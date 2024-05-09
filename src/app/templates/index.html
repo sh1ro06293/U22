@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>index</title>
+        <link rel="stylesheet" href="/static/css/style.css">
     </head>
     <body>
-    <h1>ああaaaadasdあ</h1>
+    <h1>h1タグ</h1>
+    <p>{{ aaa }}</p>
+    
+    <!-- for文 -->
+    <ul>
+        {% for i in num %}
+            <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+    <img src="/static/images/haikei.jpg" alt="">
     </body>
 </html>
