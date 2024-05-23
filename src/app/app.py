@@ -39,6 +39,9 @@ def register():
         password = request.form.get('password')
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         user = UserTable(Name=name, Email=email, Number=number, Password=hashed_password)
+        if UserTable.query.filter_by(Email=email).first():
+            flash('This email is already taken. Please choose another', 'danger')
+            return redirect(url_for('register'))
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You can now log in', 'success')
