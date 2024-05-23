@@ -6,6 +6,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from os import environ
 from dotenv import load_dotenv
 load_dotenv()
+from models import UserTable, StationTable
 
 DB_USER = environ.get('DB_USER')
 DB_PASS = environ.get('DB_PASS')
@@ -22,7 +23,6 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-from models import UserTable
 
 @login_manager.user_loader
 def load_user(id):
@@ -76,6 +76,28 @@ def mypage():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/staffRegister', methods=['GET', 'POST'])
+def staffRegister():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    if request.method == 'POST':
+        name = request.form.get('name')
+        id = request.form.get('id')
+        password = request.form.get('password')
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        station = StationTable(Name=name, id=id,  Password=hashed_password)
+        if station.query.filter_by(id=id).first():
+            flash('This email is already taken. Please choose another', 'danger')
+            return redirect(url_for('staffRegister'))
+        db.session.add(station)
+        db.session.commit()
+        flash('Your account has been created! You can now log in', 'success')
+        login_user(station, remember=True)
+        next_page = request.args.get('next')
+        return redirect(next_page) if next_page else redirect(url_for('staffPage'))
+
+    return render_template('sraffRegister.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
