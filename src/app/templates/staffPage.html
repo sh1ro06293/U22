@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <title>mypage</title>
 </head>
+
 <body>
     <a href="{{ url_for('logout') }}">ログアウト</a>
-    <h2>{{ current_user.Name }}</h2>
-   <div class="reservation_list">
+    <h2>{{ current_user.Name }} 職員ページ</h2>
+    <div class="reservation_list">
         <h2>予約一覧</h2>
         <table>
         </table>
-   </div> <!-- reservation_list -->
-   <div class="history">
-        <h2>予約履歴</h2>
-        <table>
-        </table>
-   </div>
+    </div> <!-- reservation_list -->
+    <div class="chat">
+        <button>チャットへ</button>
+
+    </div>
 </body>
+
 </html>

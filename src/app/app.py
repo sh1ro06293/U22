@@ -42,7 +42,10 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You can now log in', 'success')
-        return redirect(url_for('login'))
+        login_user(user, remember=True)
+        next_page = request.args.get('next')
+        return redirect(next_page) if next_page else redirect(url_for('mypage'))
+
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])

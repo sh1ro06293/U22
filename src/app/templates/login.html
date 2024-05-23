@@ -8,15 +8,15 @@
     <h2>Login</h2>
     <form method="POST">
         <div>
-            <label for="email">Email:</label>
+            <label for="email">メールアドレス:</label>
             <input type="email" id="email" name="email" required>
         </div>
         <div>
-            <label for="password">Password:</label>
+            <label for="password">パスワード:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">ログイン</button>
     </form>
-    <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+    <button><a href="{{ url_for('register') }}">アカウント作成</a></button>
 </body>
 </html>
