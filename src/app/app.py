@@ -99,6 +99,15 @@ def staffRegister():
 
     return render_template('sraffRegister.html')
 
+@app.route('/staffLogin', methods=['GET', 'POST'])
+def staffLogin():
+    return render_template('staffLogin.html')
+
+@app.route('/staffPage')
+@login_required
+def staffPage():
+    return render_template('staffPage.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
