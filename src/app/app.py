@@ -48,7 +48,7 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('mypage'))
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -56,15 +56,15 @@ def login():
         if user and bcrypt.check_password_hash(user.Password, password):
             login_user(user, remember=True)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('mypage'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html')
 
-@app.route('/home')
+@app.route('/mypage')
 @login_required
-def home():
-    return render_template('home.html')
+def mypage():
+    return render_template('mypage.html')
 
 @app.route('/logout')
 def logout():

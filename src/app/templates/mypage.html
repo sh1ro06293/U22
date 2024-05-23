@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>mypage</title>
+</head>
+<body>
+    <h2>mypage</h2>
+    <p>ログイン中: {{ current_user.Name }}!</p>
+    <a href="{{ url_for('logout') }}">ログアウト</a>
+</body>
+</html>
