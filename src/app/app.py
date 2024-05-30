@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 from models import UserTable, StationTable
 from ext import db
+from flask_migrate import Migrate
+
 
 DB_USER = environ.get('DB_USER')
 DB_PASS = environ.get('DB_PASS')
@@ -17,7 +19,7 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{DB_USER}:{DB_PASS}@localhost/{DB_NAME}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
-
+migrate = Migrate(app, db) 
 
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)

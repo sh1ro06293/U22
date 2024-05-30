@@ -27,7 +27,7 @@ class ChatMessageTable(db.Model):
 
 class StationTable(db.Model):
     __tablename__ = 'StationTable'
-    id = db.Column(db.String(20), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(50), nullable=False)
     Password = db.Column(db.String(100), nullable=False)
 
