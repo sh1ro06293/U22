@@ -31,6 +31,10 @@ login_manager.login_message_category = 'info'
 def load_user(id):
     return UserTable.query.get(int(id))
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
