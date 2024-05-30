@@ -7,11 +7,26 @@
 <body>
     <a href="{{ url_for('logout') }}">ログアウト</a>
     <h2>{{ current_user.Name }}</h2>
+    <div class="reserv">
+          <h2><a href="{{ url_for('route') }}">予約</a></h2>
+
+    </div>
    <div class="reservation_list">
-        <h2>予約一覧</h2>
-        <table>
-        </table>
-   </div> <!-- reservation_list -->
+          <h2>予約一覧</h2>
+          {% if reservation_list == [] %}
+               <p>予約はありません</p>
+          {% else %}
+               <div class="reservation">
+                         <tr>
+                              <th>予約日</th>
+                              <th>予約時間</th>
+                              <th>乗車駅</th>
+                              <th>降車駅</th>
+                              <th>編集・削除</th>
+                         </tr>
+               </div> <!-- reservation -->
+             </div> <!-- reservation_list -->
+          {% endif %}
    <div class="history">
         <h2>予約履歴</h2>
         <table>

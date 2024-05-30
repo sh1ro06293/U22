@@ -71,7 +71,14 @@ def login():
 @app.route('/mypage')
 @login_required
 def mypage():
-    return render_template('mypage.html')
+    reservation_list = list()
+    return render_template('mypage.html',
+                           reservation_list=reservation_list)
+
+@app.route('/route')
+@login_required
+def route():
+    return render_template('route.html')
 
 @app.route('/logout')
 def logout():
