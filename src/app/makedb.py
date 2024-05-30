@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-class UserLogin(db.Model):
+class UserTable(db.Model):
     __tablename__ = 'UserTable'
     id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(50), nullable=False)
@@ -22,14 +22,14 @@ class UserLogin(db.Model):
     Number = db.Column(db.String(15), nullable=False)
     Password = db.Column(db.String(100), nullable=False)
 
-class Chat(db.Model):
+class ChatTable(db.Model):
     __tablename__ = 'chatTable'
     id = db.Column(db.Integer, primary_key=True)
     User_Id1 = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
     User_Id2 = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
     Room_Name = db.Column(db.String(50), nullable=False)
 
-class ChatMess(db.Model):
+class ChatMessageTable(db.Model):
     __tablename__ = 'ChatMessageTable'
     id = db.Column(db.Integer, primary_key=True)
     Chat_Id = db.Column(db.Integer, db.ForeignKey('chatTable.id'), nullable=False)
@@ -37,13 +37,13 @@ class ChatMess(db.Model):
     From_User = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
     Message = db.Column(db.Text, nullable=False)
 
-class Station(db.Model):
+class StationTable(db.Model):
     __tablename__ = 'StationTable'
     id = db.Column(db.String(20), primary_key=True)
     Name = db.Column(db.String(50), nullable=False)
     Password = db.Column(db.String(100), nullable=False)
 
-class Reserve(db.Model):
+class ReserveTable(db.Model):
     __tablename__ = 'ReserveTable'
     id = db.Column(db.Integer, primary_key=True)
     User_Id = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
