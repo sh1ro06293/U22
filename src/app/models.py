@@ -1,20 +1,6 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from os import environ
-from dotenv import load_dotenv
+from ext import db
 from flask_login import UserMixin
-from flask_migrate import Migrate
-load_dotenv()
 
-DB_USER = environ.get('DB_USER')
-DB_PASS = environ.get('DB_PASS')
-DB_NAME = environ.get('DB_NAME')
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{DB_USER}:{DB_PASS}@localhost/{DB_NAME}'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 class UserTable(db.Model, UserMixin):
     __tablename__ = 'UserTable'
