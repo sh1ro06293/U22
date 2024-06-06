@@ -84,7 +84,17 @@ def mypage():
 @app.route('/route')
 @login_required
 def route():
+    if request.method == 'POST':
+        departure = request.form.get('departure')
+        arrival = request.form.get('arrival')
+        day = request.form.get('day')
+        delattr_time = request.form.get('time')
+        # db登録
+
+        
     return render_template('route.html')
+
+
 
 @app.route('/logout')
 def logout():
