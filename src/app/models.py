@@ -32,7 +32,8 @@ class StationTable(db.Model, UserMixin):
     Name = db.Column(db.String(50), nullable=False)
     Password = db.Column(db.String(100), nullable=False)
 
-    
+    def get_id(self):
+        return self.id
 
 class ReserveTable(db.Model):
     __tablename__ = 'ReserveTable'
