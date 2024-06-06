@@ -104,19 +104,21 @@ def submit_form1():
             delattr_time = request.form.get('time')
             # db登録
             route = ReserveTable(
-                                    User_Id=current_user.id,
-                                    Departure_Station_Id = departure,
-                                    Arrive_Station_Id = arrive, 
-                                    Departure_Datetime = day + ' ' + delattr_time,
-                                    Arrive_Datetime = day + ' ' + delattr_time,
-                                    Departure_Complete = False,
-                                    Arrive_Complete = False,
-                                    Note='test'
-                                )
+                User_Id=current_user.id,
+                Departure_Station_Id = departure,
+                Arrive_Station_Id = arrive, 
+                Departure_Datetime = day + ' ' + delattr_time,
+                Arrive_Datetime = day + ' ' + delattr_time,
+                Departure_Complete = False,
+                Arrive_Complete = False,
+                Note='test'
+            )
             db.session.add(route)
             db.session.commit()
             flash('予約完了', 'success')
-
+            return redirect(url_for('mypage'))
+        
+        return redirect(url_for('route'))
 
 
 @app.route('/logout')
