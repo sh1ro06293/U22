@@ -80,7 +80,7 @@ def login():
 @app.route('/mypage')
 @login_required
 def mypage():
-    reservation_list = list()
+    reservation_list = ReserveTable.query.all()
     return render_template('mypage.html',
                            reservation_list=reservation_list)
 
