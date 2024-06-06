@@ -103,15 +103,14 @@ def logout():
 
 @app.route('/staffRegister', methods=['GET', 'POST'])
 def staffRegister():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
+    
     if request.method == 'POST':
         name = request.form.get('name')
-        id = request.form.get('id')
+        station_id = request.form.get('station_id')
         password = request.form.get('password')
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        station = StationTable(Name=name, id=id,  Password=hashed_password)
-        if station.query.filter_by(id=id).first():
+        station = StationTable(Name=name, Station_Id=station_id ,Password=hashed_password)
+        if station.query.filter_by().first():
             flash('This email is already taken. Please choose another', 'danger')
             return redirect(url_for('staffRegister'))
         db.session.add(station)
@@ -121,7 +120,7 @@ def staffRegister():
         next_page = request.args.get('next')
         return redirect(next_page) if next_page else redirect(url_for('staffPage'))
 
-    return render_template('sraffRegister.html')
+    return render_template('staffRegister.html')
 
 @app.route('/staffLogin', methods=['GET', 'POST'])
 def staffLogin():
