@@ -110,15 +110,12 @@ def staffRegister():
         password = request.form.get('password')
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         station = StationTable(Name=name, Station_Id=station_id ,Password=hashed_password)
-        if station.query.filter_by().first():
-            flash('This email is already taken. Please choose another', 'danger')
+        if station.query.filter_by(Station_Id=station_id).first():
+            flash('すでに登録済み', 'danger')
             return redirect(url_for('staffRegister'))
         db.session.add(station)
         db.session.commit()
-        flash('Your account has been created! You can now log in', 'success')
-        login_user(station, remember=True)
-        next_page = request.args.get('next')
-        return redirect(next_page) if next_page else redirect(url_for('staffPage'))
+        flash('作成完了', 'success')
 
     return render_template('staffRegister.html')
 
