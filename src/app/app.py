@@ -8,6 +8,8 @@ load_dotenv()
 from models import UserTable, StationTable, ReserveTable
 from ext import db
 from flask_migrate import Migrate
+from datetime import datetime
+
 
 
 DB_USER = environ.get('DB_USER')
@@ -80,9 +82,14 @@ def login():
 @app.route('/mypage')
 @login_required
 def mypage():
-    reservation_list = ReserveTable.query.all()
-    return render_template('mypage.html',
-                           reservation_list=reservation_list)
+    current_time = datetime.now()
+    reservation_list = ReserveTable.query.filter(
+        ReserveTable.User_Id == current_user.id,
+        ReserveTable.Departure_Datetime > current_time
+    ).all()
+
+    reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
+    return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
 
 @app.route('/route', methods=['GET', 'POST'])
 @login_required

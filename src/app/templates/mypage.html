@@ -44,6 +44,25 @@
    <div class="history">
         <h2>予約履歴</h2>
         <table>
+          <tr>
+               <th>予約日・時間</th>
+               <th>乗車駅</th>
+               <th>降車駅</th>
+               <th>編集・削除</th>
+          </tr>
+          {% for i in reservation_history_list %}
+          <tr>
+               <th>
+                    {{ i.Arrive_Datetime }}
+               </th>
+               <th>
+                    {{ i.Arrive_Station_Id }}
+               </th>
+               <th>
+                    {{ i.Departure_Station_Id }}
+               </th>
+          </tr>
+          {% endfor %}
         </table>
    </div>
 </body>
