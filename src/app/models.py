@@ -32,6 +32,8 @@ class StationTable(db.Model, UserMixin):
     Name = db.Column(db.String(50), nullable=False)
     Password = db.Column(db.String(100), nullable=False)
 
+    
+
 class ReserveTable(db.Model):
     __tablename__ = 'ReserveTable'
     id = db.Column(db.Integer, primary_key=True)
