@@ -79,17 +79,25 @@ def login():
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html')
 
-@app.route('/mypage')
+@app.route('/mypage', methods=['GET', 'POST'])
 @login_required
 def mypage():
-    current_time = datetime.now()
-    reservation_list = ReserveTable.query.filter(
-        ReserveTable.User_Id == current_user.id,
-        ReserveTable.Departure_Datetime > current_time
-    ).all()
+    if request.method == 'GET':
+        return render_template('reserveInfo.html',post=ReserveTable.query.get(id))
+    else:
+        current_time = datetime.now()
+        reservation_list = ReserveTable.query.filter(
+            ReserveTable.User_Id == current_user.id,
+            ReserveTable.Departure_Datetime > current_time
+        ).all()
 
-    reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
-    return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
+        reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
+        return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
+
+@app.route('/<int:id>/reserveInfo', methods=['GET', 'POST'])
+@login_required
+def reserveInfo():
+    return render_template('reserveInfo.html')
 
 @app.route('/route', methods=['GET', 'POST'])
 @login_required
