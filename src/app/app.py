@@ -28,8 +28,11 @@ login_manager.login_message_category = 'info'
 
 
 @login_manager.user_loader
-def load_user(id):
-    return UserTable.query.get(int(id))
+def load_user(user_id):
+    user = UserTable.query.get(int(user_id))
+    if user:
+        return user
+    return StationTable.query.get(int(user_id))
 
 @app.route('/')
 def index():
@@ -131,18 +134,11 @@ def staffLogin():
 
         if station and bcrypt.check_password_hash(station.Password, password):
             login_user(station, remember=True)
-            
+
             return redirect(url_for('staffPage'))
         else:
             flash('ログイン失敗しました', 'danger')
     return render_template('staffLogin.html')
-
-@login_manager.user_loader
-def load_user(user_id):
-    user = UserTable.query.get(int(user_id))
-    if user:
-        return user
-    return StationTable.query.get(int(user_id))
 
 @app.route('/staffPage')
 @login_required
