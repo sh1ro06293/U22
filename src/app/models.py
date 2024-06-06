@@ -25,7 +25,7 @@ class ChatMessageTable(db.Model):
     From_User = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
     Message = db.Column(db.Text, nullable=False)
 
-class StationTable(db.Model):
+class StationTable(db.Model, UserMixin):
     __tablename__ = 'StationTable'
     id = db.Column(db.Integer, primary_key=True)
     Station_Id = db.Column(db.String(10), nullable=False)

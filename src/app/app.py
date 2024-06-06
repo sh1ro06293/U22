@@ -125,15 +125,16 @@ def staffLogin():
     if current_user.is_authenticated:
         return redirect(url_for('staffPage'))
     if request.method == 'POST':
-        id = request.form.get('id')
+        stationid = request.form.get('stationid')
         password = request.form.get('password')
-        station = StationTable.query.filter_by(id=id).first()
+        station = StationTable.query.filter_by(Station_Id=stationid).first()
+
         if station and bcrypt.check_password_hash(station.Password, password):
             login_user(station, remember=True)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('staffPage'))
         else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+            flash('ログイン失敗しました', 'danger')
     return render_template('staffLogin.html')
 
 @app.route('/staffPage')
