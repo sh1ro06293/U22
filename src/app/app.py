@@ -5,7 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from os import environ
 from dotenv import load_dotenv
 load_dotenv()
-from models import UserTable, StationTable
+from models import UserTable, StationTable, ReserveTable
 from ext import db
 from flask_migrate import Migrate
 
@@ -84,18 +84,38 @@ def mypage():
     return render_template('mypage.html',
                            reservation_list=reservation_list)
 
-@app.route('/route')
+@app.route('/route', methods=['GET', 'POST'])
 @login_required
 def route():
-    if request.method == 'POST':
-        departure = request.form.get('departure')
-        arrival = request.form.get('arrival')
-        day = request.form.get('day')
-        delattr_time = request.form.get('time')
-        # db登録
-
-        
     return render_template('route.html')
+
+@app.route('/submit_form1', methods=['POST'])
+def submit_form1():
+        if request.method == 'POST':
+            departure = request.form.get('departure')
+            if not StationTable.query.filter_by(Station_Id=departure).first():
+                flash('出発駅が存在しません', 'danger')
+                return redirect(url_for('route'))
+            arrive = request.form.get('arrive')
+            if not StationTable.query.filter_by(Station_Id=arrive).first():
+                flash('到着駅が存在しません', 'danger')
+                return redirect(url_for('route'))
+            day = request.form.get('day')
+            delattr_time = request.form.get('time')
+            # db登録
+            route = ReserveTable(
+                                    User_Id=current_user.id,
+                                    Departure_Station_Id = departure,
+                                    Arrive_Station_Id = arrive, 
+                                    Departure_Datetime = day + ' ' + delattr_time,
+                                    Arrive_Datetime = day + ' ' + delattr_time,
+                                    Departure_Complete = False,
+                                    Arrive_Complete = False,
+                                    Note='test'
+                                )
+            db.session.add(route)
+            db.session.commit()
+            flash('予約完了', 'success')
 
 
 

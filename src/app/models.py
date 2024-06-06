@@ -28,7 +28,7 @@ class ChatMessageTable(db.Model):
 class StationTable(db.Model, UserMixin):
     __tablename__ = 'StationTable'
     id = db.Column(db.Integer, primary_key=True)
-    Station_Id = db.Column(db.String(10), nullable=False)
+    Station_Id = db.Column(db.String(10), unique=True, nullable=False)
     Name = db.Column(db.String(50), nullable=False)
     Password = db.Column(db.String(100), nullable=False)
 
@@ -39,8 +39,8 @@ class ReserveTable(db.Model):
     __tablename__ = 'ReserveTable'
     id = db.Column(db.Integer, primary_key=True)
     User_Id = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
-    Departure_Station_Id = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
-    Arrive_Station_Id = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    Departure_Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
+    Arrive_Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
     Departure_Datetime = db.Column(db.DateTime, nullable=False)
     Arrive_Datetime = db.Column(db.DateTime, nullable=False)
     Car_Number = db.Column(db.String(10))
