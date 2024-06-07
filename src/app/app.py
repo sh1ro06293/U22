@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, jsonify, render_template, redirect, url_for, flash, request
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 # envから取得
@@ -82,22 +82,22 @@ def login():
 @app.route('/mypage', methods=['GET', 'POST'])
 @login_required
 def mypage():
-    if request.method == 'GET':
-        return render_template('reserveInfo.html',post=ReserveTable.query.get(id))
-    else:
-        current_time = datetime.now()
-        reservation_list = ReserveTable.query.filter(
-            ReserveTable.User_Id == current_user.id,
-            ReserveTable.Departure_Datetime > current_time
-        ).all()
 
-        reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
-        return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
+    current_time = datetime.now()
+    reservation_list = ReserveTable.query.filter(
+        ReserveTable.User_Id == current_user.id,
+        ReserveTable.Departure_Datetime > current_time
+    ).all()
 
-@app.route('/<int:id>/reserveInfo', methods=['GET', 'POST'])
+    reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
+    return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
+
+@app.route('/reserveInfo/', methods=['GET'])
 @login_required
-def reserveInfo():
-    return render_template('reserveInfo.html')
+def reserve_info_detail():
+    id = request.args.get('id')
+    print(id)
+    return render_template('reserveInfo.html', id=id)
 
 @app.route('/route', methods=['GET', 'POST'])
 @login_required

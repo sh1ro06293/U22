@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>mypage</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/mypage.js') }}"></script>
 </head>
 <body>
     <a href="{{ url_for('logout') }}">ログアウト</a>
@@ -36,7 +38,7 @@
                                    {{ i.Departure_Station_Id }}
                               </th>
                               <th>
-                                   <a href="/{{i.id}}/reserveInfo" role="button">編集・削除</a>
+                                   <button data-id="1" class="reserveBtn" >編集・削除</button>
                               </th>
                          </tr>
                          {% endfor %}
