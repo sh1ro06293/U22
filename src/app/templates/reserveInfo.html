@@ -29,11 +29,11 @@
     <main>
         <div class="wrap">
             <form id="form1" method="post" action="/submit_form1" style="display:none;">
-                <p>出発1：<input type="text" name="departure" id="departure" value="{{Departure_Station_Id}}"></p>
-                <p>到着：<input type="text" name="arrive" id="arrive" value="{{Arrive_Station_Id}}"></p>
-                <p>日付：<input type="date" name="day" id="day"></p>
-                <p>時間：<input type="time" name="time" id="time"></p>
-                <button type="submit" class="btn btn-1">検索</button>
+                <p>出発1：<input type="text" name="departure" id="departure" value="{{reserveData.departureStationId}}"></p>
+                <p>到着：<input type="text" name="arrive" id="arrive" value="{{reserveData.arriveStationId}}"></p>
+                <p>日付：<input type="date" name="day" id="day" value="{{reserveData.departureDate}}"></p>
+                <p>時間：<input type="time" name="time" id="time" value="{{reserveData.departureTime}}"></p>
+                <button type="submit" class="btn btn-1">編集</button>
             </form>
             <form id="form2" method="post" action="/submit_form2" style="display:none;">
                 <p>出発2：<input type="text" name="departure" id="departure"></p>

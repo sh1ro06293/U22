@@ -97,7 +97,30 @@ def mypage():
 def reserve_info_detail():
     id = request.args.get('id')
     print(id)
-    return render_template('reserveInfo.html', id=id)
+    # dbからidのデータを取得する
+    # dbは rederveTableから取得
+    reserve_db = ReserveTable.query.filter_by(id=id).first()
+    if not reserve_db:
+        flash('予約情報が存在しません', 'danger')
+        return redirect(url_for('mypage'))
+
+    else:
+        reserve_data = {}
+        reserve_data['id'] = reserve_db.id
+        reserve_data['departureStationId'] = reserve_db.Departure_Station_Id
+        reserve_data['arriveStationId'] = reserve_db.Arrive_Station_Id
+        # 日にちだけにする
+        reserve_data['departureDate'] = reserve_db.Departure_Datetime.strftime('%Y-%m-%d')
+        # 時間だけにする
+        reserve_data['departureTime'] = reserve_db.Departure_Datetime.strftime('%H:%M')
+        reserve_data['arriveDatetime'] = reserve_db.Arrive_Datetime
+        reserve_data['carNumber'] = reserve_db.Car_Number
+        reserve_data['departureComplete'] = reserve_db.Departure_Complete
+        reserve_data['arriveComplete'] = reserve_db.Arrive_Complete
+        reserve_data['transferId'] = reserve_db.Transfer_Id
+        reserve_data['note'] = reserve_db.Note
+    
+    return render_template('reserveInfo.html', reserveData=reserve_data)
 
 @app.route('/route', methods=['GET', 'POST'])
 @login_required
