@@ -1,6 +1,6 @@
 $(document).ready(function() {
     console.log("Document ready");
-    
+    $('#form1').show();
     $('#btn1kai').click(function() {
         console.log("一回ボタンがクリックされました");
         $('#form1').show();
