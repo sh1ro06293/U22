@@ -50,8 +50,8 @@
         }
 
         .user-list li {
-            display: flex;
-            align-items: center;
+            /* display: flex;
+            align-items: center; */
             padding: 10px;
             border-bottom: 1px solid #f0f0f0;
         }
@@ -72,35 +72,34 @@
             font-size: 14px;
             color: #666;
         }
+        li a {
+            display: block;
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chatlist.js') }}"></script>
+
 </head>
 
 <body>
     <div class="container">
-        <div class="header">ユーザチャット機能</div>
-        <div class="list-header">利用リスト</div>
-        <ul class="user-list">
-            <li>
-                <div class="user-icon"></div>
-                <div class="user-name">ユーザ1</div>
-            </li>
-            <li>
-                <div class="user-icon"></div>
-                <div class="user-name">ユーザ2</div>
-            </li>
-            <li>
-                <div class="user-icon"></div>
-                <div class="user-name">ユーザ3</div>
-            </li>
-            <li>
-                <div class="user-icon"></div>
-                <div class="user-name">ユーザ4</div>
-            </li>
-            <li>
-                <div class="user-icon"></div>
-                <div class="user-name">ユーザ5</div>
-            </li>
-        </ul>
+        <div class="header"><h2>ユーザチャット機能</h2></div>
+        <div class="list-header"><h3>利用リスト</h3></div>
+        <div class="chatlist">    
+            {% if chatlist == [] %}
+                    <p>利用者はいません</p>
+            {% else %}
+                <ul class="user-list">
+                    {% for item in chatlist %}
+                        <li><a href="{{url_for('Userchat')}}">
+                            <p class="user-icon"></p>
+                            <p class="user-name">{{ item }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
     </div>
 </body>
 

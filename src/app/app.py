@@ -142,6 +142,7 @@ def submit_form1():
             delattr_time = request.form.get('time')
             # db登録
             route = ReserveTable(
+                # apiが来たら変更
                 User_Id=current_user.id,
                 Departure_Station_Id = departure,
                 Arrive_Station_Id = arrive, 
@@ -157,6 +158,17 @@ def submit_form1():
             return redirect(url_for('mypage'))
         
         return redirect(url_for('route'))
+
+
+@app.route('/chatList', methods=['GET', 'POST'])
+def chatList():
+    chatlist = ("a", "b", "c")
+    return render_template('Chatlist.html', chatlist=chatlist)
+
+@app.route('/Userchat', methods=['GET', 'POST'])
+def Userchat():
+    return render_template('Userchat.html')
+
 
 
 @app.route('/logout')
