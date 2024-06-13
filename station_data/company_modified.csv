@@ -1,0 +1,165 @@
+company_id,company_name,company_name_r,company_url
+1,JR北海道,JR Hokkaidou,http://www.jrhokkaido.co.jp/
+2,JR東日本,JR Higashinihon,http://www.jreast.co.jp/
+3,JR東海,JR Toukai,http://jr-central.co.jp/
+4,JR西日本,JR Nishinihon,http://www.westjr.co.jp/
+5,JR四国,JR Shikoku,http://www.jr-shikoku.co.jp/
+6,JR九州,JR Kyuushuu,http://www.jrkyushu.co.jp/
+11,東武鉄道,Toubutetsudou,http://www.tobu.co.jp/
+12,西武鉄道,Seibutetsudou,http://www.seibu-group.co.jp/railways/
+13,京成電鉄,Keiseidentetsu,http://www.keisei.co.jp/
+14,京王電鉄,Keiou Dentetsu,http://www.keio.co.jp/
+15,小田急電鉄,Odakyuu Dentetsu,http://www.odakyu.jp/
+16,東急電鉄,Toukyuudentetsu,http://www.tokyu.co.jp/
+17,京急電鉄,Keikyuu Dentetsu,http://www.keikyu.co.jp/
+18,東京メトロ,Toukyou metro,http://www.tokyometro.jp/
+19,相模鉄道,Sagamitetsudou,http://www.sotetsu.co.jp/
+20,名古屋鉄道,Nagoyatetsudou,http://www.meitetsu.co.jp/
+21,近畿日本鉄道,Kinkinihontetsudou,http://www.kintetsu.co.jp/
+22,南海電鉄,Nankaidentetsu,http://www.nankai.co.jp/
+23,京阪電鉄,Keihandentetsu,http://www.keihan.co.jp/
+24,阪急電鉄,Hankyuudentetsu,http://rail.hankyu.co.jp/
+25,阪神電鉄,Hanshindentetsu,http://rail.hanshin.co.jp/
+26,西日本鉄道,Nishinihon Tetsudou,http://www.nishitetsu.co.jp/
+101,札幌市交通局,Sapporoshikoutsuukyoku,http://www.city.sapporo.jp/st/
+102,函館市交通局,Hakodate Shikou Toori Kyoku,http://www.city.hakodate.hokkaido.jp/transport/
+248,道南いさりび鉄道,Dounan isaribi Tetsudou,http://www.shr-isaribi.jp
+104,津軽鉄道,Tsugaru Tetsudou,http://tsutetsu.com/
+105,弘南鉄道,Hiroshi Minami Tetsudou,http://konantetsudo.jp/
+107,IGRいわて銀河鉄道,IGR iwate Gingatetsudou,http://www.igr.jp/
+108,青い森鉄道,Aoi Mori Tetsudou,http://aoimorirailway.com/
+109,三陸鉄道,Sanriku Tetsudou,http://www.sanrikutetsudou.com/
+110,秋田内陸縦貫鉄道,Akita Nairiku Juukan Tetsudou,http://www.akita-nairiku.com/
+111,由利高原鉄道,Yuri Kougen Tetsudou,http://www.obako5.com/
+112,山形鉄道,Yamagata Tetsudou,http://www.flower-liner.jp/
+114,阿武隈急行,Abukumakyuukou,http://www.abukyu.co.jp/
+115,仙台市交通局,Sendaishi Koutsuukyoku,http://www.kotsu.city.sendai.jp/
+116,福島交通,Fukushima Koutsuu,http://www.fukushima-koutu.co.jp/
+117,会津鉄道,Aizutetsudou,http://www.aizutetsudo.jp/
+250,宇都宮ライトレール,Utsunomiya raitoreeru,https://www.miyarail.co.jp/
+118,仙台空港鉄道,Sendaikuukou Tetsudou,http://www.senat.co.jp/
+119,東京都交通局,Toukyoutokoutsuukyoku,http://www.kotsu.metro.tokyo.jp/
+120,秩父鉄道,Chichibutetsudou,http://www.chichibu-railway.co.jp/
+121,埼玉高速鉄道,Saitama Kousokutetsudou,http://www.s-rail.co.jp/
+122,いすみ鉄道,isumi Tetsudou,http://www.isumirail.co.jp/
+123,首都圏新都市鉄道,Shutoken Shinto Shi Tetsudou,http://www.mir.co.jp/
+124,横浜高速鉄道,Yokohamakou Soku Tetsudou,http://www.mm21railway.co.jp/
+125,ゆりかもめ,yurikamome,http://www.yurikamome.co.jp/
+126,わたらせ渓谷鐵道,watarase Keikokutetsudou,http://www.watetsu.com/
+127,山万,Yamaman,http://www.yamaman.co.jp/
+128,伊豆箱根鉄道,Izuhakonetetsudou,http://www.izuhakone.co.jp/
+129,ひたちなか海浜鉄道,hitachinaka Kaihin Tetsudou,http://www.hitachinaka-rail.co.jp/
+130,横浜市交通局,Yokohamashi Koutsuukyoku,http://www.city.yokohama.lg.jp/koutuu/
+131,株式会社横浜シーサイドライン,Kabushikigaisha Yokohama shiisaidorain,http://www.seasideline.co.jp/
+132,関東鉄道,Kantoutetsudou,http://www.kantetsu.co.jp/
+133,江ノ島電鉄,Kou no Shima Dentetsu,http://www.enoden.co.jp/
+134,埼玉新都市交通,Saitama Shinto Shikou Toori,http://www5.ocn.ne.jp/~snut/
+136,鹿島臨海鉄道,Kashima Rinkai Tetsudou,http://www.rintetsu.co.jp/
+137,芝山鉄道,Shibayamatetsudou,http://www.sibatetu.co.jp/
+138,小湊鐵道,Kominatotetsudou,http://www.kominato.co.jp/
+139,湘南モノレール,Shounan monoreeru,http://www.shonan-monorail.co.jp/
+140,上信電鉄,Joushindentetsu,http://www.joshin-dentetsu.co.jp/
+141,上毛電気鉄道,Uwage Denkitetsudou,http://www.jomorailway.com/
+142,新京成電鉄,Shinkeisei Dentetsu,http://www.shinkeisei.co.jp/
+143,真岡鐵道,Moukatetsudou,http://www.moka-railway.co.jp/
+144,千葉都市モノレール,Chiba Toshi monoreeru,http://www.chiba-monorail.co.jp/
+145,流鉄,Ryuu Tetsu,http://www.kanko.chuo.chiba.jp/kanko/3297/
+146,多摩都市モノレール,Tama Toshi monoreeru,http://www.tama-monorail.co.jp/
+147,銚子電気鉄道,Choushi Denkitetsudou,http://www.choshi-dentetsu.jp/
+148,東京モノレール,Toukyou monoreeru,http://www.tokyo-monorail.co.jp/
+149,東京臨海高速鉄道,Toukyou Rinkai Kousokutetsudou,http://www.twr.co.jp/
+150,東葉高速鉄道,Touyoukousokutetsudou,http://www.toyokosoku.co.jp/
+151,箱根登山鉄道,Hakonetozantetsudou,http://www.hakone-tozan.co.jp/
+152,北総鉄道,Hokusoutetsudou,http://www.hokuso-railway.co.jp/
+153,野岩鉄道,Yagan Tetsudou,http://www.yagan.co.jp/
+154,富士山麓電気鉄道,Fujisanroku Denkitetsudou,http://www.fujikyu.co.jp/
+155,北越急行,Hokuetsu Kyuukou,http://www.hokuhoku.co.jp/
+156,しなの鉄道,shinano Tetsudou,http://www.shinanorailway.co.jp/
+157,上田交通,Ueda Koutsuu,http://www.ukg.co.jp/
+158,長野電鉄,Naganodentetsu,http://www.nagaden-net.co.jp/
+159,アルピコ交通,arupiko Koutsuu,http://www.alpico.co.jp/traffic/
+160,富山地方鉄道,Toyamachihoutetsudou,http://www.chitetsu.co.jp/
+163,万葉線,Manyousen,http://www1.coralnet.or.jp/manyosen/
+162,黒部峡谷鉄道,Kurobekyoukokutetsudou,http://www.kurotetu.co.jp/
+164,富山ライトレール,Toyama raitoreeru,http://www.t-lr.co.jp/
+165,北陸鉄道,Hokurikutetsudou,http://www.hokutetsu.co.jp/
+244,えちごトキめき鉄道,echigo toki meki Tetsudou,https://www.echigo-tokimeki.co.jp/
+245,あいの風とやま鉄道,aino Kaze toyama Tetsudou,http://ainokaze.co.jp/
+246,IRいしかわ鉄道,IR ishikawa Tetsudou,http://www.ishikawa-railway.jp
+166,のと鉄道,noto Tetsudou,http://www.incl.ne.jp/ntr/
+167,えちぜん鉄道,echizen Tetsudou,http://www.echizen-tetudo.co.jp/
+168,福井鉄道,Fukui Tetsudou,http://www.fukutetsu.jp/
+169,伊豆急行,Izukyuukou,http://www.izukyu.co.jp/
+170,岳南鉄道,Gakunan Tetsudou,http://www.fujikyu.co.jp/gakunan/
+171,静岡鉄道,Shizuokatetsudou,http://www.shizutetsu.co.jp/
+172,天竜浜名湖鉄道,Tenryuu Hamanako Tetsudou,http://www.tenhama.co.jp/
+173,遠州鉄道,Enshuutetsudou,http://www.entetsu.co.jp/
+174,大井川鐵道,Ooigawatetsudou,http://www.oigawa-railway.co.jp/
+175,名古屋臨海高速鉄道,Nagoya Rinkai Kousokutetsudou,http://www.aonamiline.co.jp/
+176,東海交通事業,Toukai Koutsuu Jigyou,http://www.tkj-i.co.jp/
+177,愛知環状鉄道,Aichikanjoutetsudou,http://www.aikanrailway.co.jp/
+178,愛知高速交通,Aichi Kousoku Koutsuu,http://www.linimo.jp/
+179,名古屋市交通局,Nagoyashi Koutsuukyoku,http://www.kotsu.city.nagoya.jp/
+181,豊橋鉄道,Toyohashi Tetsudou,http://www.toyotetsu.com/
+182,名古屋ガイドウェイバス,Nagoya gaidoueibasu,http://www.guideway.co.jp/
+183,明知鉄道,Meichi Tetsudou,http://www.aketetsu.co.jp/
+184,長良川鉄道,Nagaragawa Tetsudou,http://www.nagatetsu.co.jp/
+185,樽見鉄道,Tarumi Tetsudou,http://tarumi-railway.com/
+186,三岐鉄道,Sangi Tetsudou,http://www.sangirail.co.jp/
+187,伊勢鉄道,Isetetsudou,http://www.isetetu.co.jp/
+188,伊賀鉄道,Iga Tetsudou,http://www.igatetsu.co.jp/
+189,養老鉄道,Yourou Tetsudou,http://www.yororailway.co.jp/
+247,四日市あすなろう鉄道,Yokkaichi asunarou Tetsudou,
+190,近江鉄道,Oumitetsudou,http://www.ohmitetudo.co.jp/
+191,信楽高原鐵道,Shigaraki Kougen Tetsudou,http://www.biwa.ne.jp/skr/
+192,嵯峨野観光鉄道,Sagano Kankoutetsudou,http://www.sagano-kanko.co.jp/
+193,叡山電鉄,Eizandentetsu,http://eizandensha.co.jp/
+194,京都丹後鉄道,Kyouto Tango Tetsudou,http://travel.willer.co.jp/campaign/tantetsu/
+195,京都市交通局,Kyoutoshikoutsuukyoku,http://www.city.kyoto.lg.jp/kotsu/
+196,京福電気鉄道,Keifuku Denkitetsudou,http://www.keifuku.co.jp/
+197,北大阪急行電鉄,Kitaoosakakyuukou Dentetsu,http://www.kita-kyu.co.jp/
+198,泉北高速鉄道,Senboku Kousokutetsudou,https://www.semboku.jp/
+199,水間鉄道,Mizuma Tetsudou,http://www.suitetsu.com/
+249,Osaka Metro,Osaka Metro,http://www.osakametro.co.jp
+200,大阪市交通局,Oosakashikou Toori Kyoku,http://www.city.osaka.lg.jp/toshikotsu/
+201,大阪モノレール株式会社,Oosaka monoreeru Kabushikigaisha,http://www.osaka-monorail.co.jp/
+202,阪堺電気軌道,Hankai Denki Kidou,http://www.hankai.co.jp/
+203,神戸高速鉄道,Koubekousokutetsudou,http://www.kobe-kousoku.jp/
+204,神戸電鉄,Koubedentetsu,http://www.shintetsu.co.jp/
+206,山陽電気鉄道,Sanyou Denkitetsudou,http://www.sanyo-railway.co.jp/
+207,能勢電鉄,Nose Dentetsu,http://noseden.hankyu.co.jp/
+209,北条鉄道,Houjou Tetsudou,http://www.hojorailway.jp/
+210,智頭急行,Chizu Kyuukou,http://www.chizukyu.co.jp/
+211,神戸市交通局,Koubeshikoutsuukyoku,http://www.city.kobe.lg.jp/
+212,神戸新交通,Koubeshinkoutsuu,http://www.knt-liner.co.jp/
+213,紀州鉄道,Kishuutetsudou,http://www.kitetsu.co.jp/
+214,和歌山電鐵,Wakayama Dentetsu,http://www.wakayama-dentetsu.co.jp/
+215,若桜鉄道,Wakasa Tetsudou,http://www.infosakyu.ne.jp/~wakatetu/
+216,一畑電車,Ichibata Densha,http://www.ichibata.co.jp/railway/
+217,水島臨海鉄道,Mizushima Rinkai Tetsudou,http://www.mizurin.co.jp/
+218,井原鉄道,Ihara Tetsudou,http://plus.harenet.ne.jp/~ibarasen/
+219,岡山電気軌道,Okayama Denki Kidou,http://www.okayama-kido.co.jp/
+220,スカイレールサービス,sukaireerusaabisu,
+221,広島高速交通,Hiroshima Kousoku Koutsuu,http://astramline.co.jp/
+222,広島電鉄,Hiroshima Dentetsu,http://www.hiroden.co.jp/
+223,錦川鉄道,Nishikigawatetsudou,http://nishikigawa.com/
+224,阿佐海岸鉄道,Asa Kaigan Tetsudou,http://www.asatetu.v-co.jp/
+225,高松琴平電気鉄道,Takamatsu Kotohira Denkitetsudou,http://www.kotoden.co.jp/
+226,伊予鉄道,Iyotetsudou,http://www.iyotetsu.co.jp/
+227,土佐くろしお鉄道,Tosa kuroshio Tetsudou,http://www.tosakuro.co.jp/
+228,土佐電気鉄道,Tosa Denkitetsudou,http://www.tosaden.co.jp/
+229,甘木鉄道,Amagi Tetsudou,http://www.amatetsu.jp/
+230,平成筑豊鉄道,Heiseichikuhoutetsudou,http://www.heichiku.net/
+231,福岡市交通局,Fukuokashi Koutsuukyoku,http://subway.city.fukuoka.lg.jp/
+232,北九州高速鉄道,Kitakyuushuu Kousokutetsudou,http://www.kitakyushu-monorail.co.jp/
+233,筑豊電気鉄道,Chikuhou Denkitetsudou,http://www.chikutetsu.co.jp/
+234,松浦鉄道,Matsuuratetsudou,http://www.matutetu.com/
+235,島原鉄道,Shimabara Tetsudou,http://www.shimatetsu.co.jp/
+236,長崎電気軌道,Nagasakidenkikidou,http://www.naga-den.com/
+237,熊本電気鉄道,Kumamoto Denkitetsudou,http://www.kumamotodentetsu.co.jp/
+238,南阿蘇鉄道,Minamiaso Tetsudou,http://www.mt-torokko.com/
+239,くま川鉄道,kuma Kawatetsu Michi,http://www.kumagawa-rail.com/
+240,肥薩おれんじ鉄道,Hisatsu orenji Tetsudou,http://www.hs-orange.com/
+241,熊本市交通局,Kumamotoshi Koutsuukyoku,http://www.kotsu-kumamoto.jp/
+242,鹿児島市交通局,Kako Shima Shikou Toori Kyoku,http://www.kotsu-city-kagoshima.jp/
+243,沖縄都市モノレール,Okinawa Toshi monoreeru,http://www.yui-rail.co.jp/
