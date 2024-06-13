@@ -32,10 +32,11 @@
                                    {{ i.Arrive_Datetime }}
                               </th>
                               <th>
-                                   {{ i.Arrive_Station_Id }}
+                                   {{ i.Departure_Station_Id }}
                               </th>
                               <th>
-                                   {{ i.Departure_Station_Id }}
+                                   
+                                   {{ i.Arrive_Station_Id }}
                               </th>
                               <th>
                                    <button data-id="{{i.id}}" class="reserveBtn" >編集・削除</button>
@@ -61,10 +62,11 @@
                     {{ i.Arrive_Datetime }}
                </th>
                <th>
-                    {{ i.Arrive_Station_Id }}
+                    {{ i.Departure_Station_Id }}
+                    
                </th>
                <th>
-                    {{ i.Departure_Station_Id }}
+                    {{ i.Arrive_Station_Id }}
                </th>
           </tr>
           {% endfor %}
