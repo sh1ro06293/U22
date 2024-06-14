@@ -89,7 +89,10 @@ def mypage():
         ReserveTable.Departure_Datetime > current_time
     ).all()
 
-    reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
+    reservation_history_list = ReserveTable.query.filter(
+        ReserveTable.User_Id == current_user.id,
+        ReserveTable.Departure_Datetime < current_time
+        ).all()
     return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
 
 @app.route('/reserveInfo/', methods=['GET'])
