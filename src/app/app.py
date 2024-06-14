@@ -135,11 +135,11 @@ def submit_form1():
         if request.method == 'POST':
             departure = request.form.get('departure')
             if not StationTable.query.filter_by(Station_Id=departure).first():
-                flash('出発駅が存在しません', 'danger')
+                print('出発駅が存在しません')
                 return redirect(url_for('route'))
             arrive = request.form.get('arrive')
             if not StationTable.query.filter_by(Station_Id=arrive).first():
-                flash('到着駅が存在しません', 'danger')
+                print('到着駅が存在しません')
                 return redirect(url_for('route'))
             day = request.form.get('day')
             delattr_time = request.form.get('time')
