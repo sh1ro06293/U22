@@ -10,19 +10,34 @@ class UserTable(db.Model, UserMixin):
     Number = db.Column(db.String(15), nullable=False)
     Password = db.Column(db.String(100), nullable=False)
 
-class ChatTable(db.Model):
-    __tablename__ = 'chatTable'
+class UserChatTable(db.Model):
+    __tablename__ = 'UserChatTable'
     id = db.Column(db.Integer, primary_key=True)
     User_Id1 = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
-    User_Id2 = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
+    User_Id2 = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
     Room_Name = db.Column(db.String(50), nullable=False)
 
-class ChatMessageTable(db.Model):
-    __tablename__ = 'ChatMessageTable'
+class UserChatMessageTable(db.Model):
+    __tablename__ = 'UserChatMessageTable'
     id = db.Column(db.Integer, primary_key=True)
-    Chat_Id = db.Column(db.Integer, db.ForeignKey('chatTable.id'), nullable=False)
+    User_Chat_Id = db.Column(db.Integer, db.ForeignKey('UserChatTable.id'), nullable=False)
     To_User = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
-    From_User = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
+    From_Station = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    Message = db.Column(db.Text, nullable=False)
+
+class StationChatTable(db.Model):
+    __tablename__ = 'StationChatTable'
+    id = db.Column(db.Integer, primary_key=True)
+    Station_Id1 = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    Station_Id2 = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    Room_Name = db.Column(db.String(50), nullable=False)
+
+class StationChatMessageTable(db.Model):
+    __tablename__ = 'StationChatMessageTable'
+    id = db.Column(db.Integer, primary_key=True)
+    Station_Chat_Id = db.Column(db.Integer, db.ForeignKey('StationChatTable.id'), nullable=False)
+    To_Station = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    From_Station = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
     Message = db.Column(db.Text, nullable=False)
 
 class StationTable(db.Model, UserMixin):

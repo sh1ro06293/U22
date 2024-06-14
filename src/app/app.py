@@ -5,7 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from os import environ
 from dotenv import load_dotenv
 load_dotenv()
-from models import UserTable, StationTable, ReserveTable
+from models import UserTable, StationTable, ReserveTable, UserChatTable, UserChatMessageTable
 from ext import db
 from flask_migrate import Migrate
 from datetime import datetime
@@ -152,7 +152,17 @@ def submit_form1():
                 Arrive_Complete = False,
                 Note='test'
             )
-            db.session.add(route)
+            user_chat = UserChatTable(
+                User_Id1 = current_user.id,
+                User_Id2 = departure,
+                Room_Name = 'test'
+            )
+            staff_chat = UserChatTable(
+                User_Id1 = departure,
+                User_Id2 = arrive,
+                Room_Name = 'test'
+            )
+            db.session.add_all([route, user_chat, staff_chat])
             db.session.commit()
             flash('予約完了', 'success')
             return redirect(url_for('mypage'))
@@ -162,7 +172,21 @@ def submit_form1():
 
 @app.route('/chatList', methods=['GET', 'POST'])
 def chatList():
-    chatlist = ("a", "b", "c")
+    id = request.args.get('id')
+    print(id)
+    # dbからidのデータを取得する
+    # dbは rederveTableから取得
+    chatList_db = UserChatTable.query.filter_by(User_Id1=id).first()
+    if not chatList_db:
+        flash('予約情報が存在しません', 'danger')
+        return redirect(url_for('mypage'))
+    else:
+        chatlist = {}
+        chatlist['id'] = chatList_db.id
+        chatlist['User_Id1'] = chatList_db.User_Id1
+        chatlist['User_Id2'] = chatList_db.User_Id2
+        chatlist['Room_Name'] = chatList_db.Room_Name
+
     return render_template('Chatlist.html', chatlist=chatlist)
 
 @app.route('/Userchat', methods=['GET', 'POST'])
