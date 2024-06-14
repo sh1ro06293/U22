@@ -5,7 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from os import environ
 from dotenv import load_dotenv
 load_dotenv()
-from models import UserTable, StationTable, ReserveTable, UserChatTable, UserChatMessageTable
+from models import UserTable, StationTable, ReserveTable, UserChatTable, UserChatMessageTable,StationChatTable
 from ext import db
 from flask_migrate import Migrate
 from datetime import datetime
@@ -140,6 +140,8 @@ def submit_form1():
                 return redirect(url_for('route'))
             day = request.form.get('day')
             delattr_time = request.form.get('time')
+            departure_Id = StationTable.query.filter_by(Station_Id=departure).first().id
+            arrive_Id = StationTable.query.filter_by(Station_Id=arrive).first().id
             # db登録
             route = ReserveTable(
                 # apiが来たら変更
@@ -153,16 +155,17 @@ def submit_form1():
                 Note='test'
             )
             user_chat = UserChatTable(
-                User_Id1 = current_user.id,
-                User_Id2 = departure,
+                User_Id = current_user.id,
+                Station_Id = departure_Id,
                 Room_Name = 'test'
             )
-            staff_chat = UserChatTable(
-                User_Id1 = departure,
-                User_Id2 = arrive,
+
+            Station_chat = StationChatTable(
+                Station_Id1 = departure_Id,
+                Station_Id2 = arrive_Id,
                 Room_Name = 'test'
             )
-            db.session.add_all([route, user_chat, staff_chat])
+            db.session.add_all([route, user_chat, Station_chat])
             db.session.commit()
             flash('予約完了', 'success')
             return redirect(url_for('mypage'))
@@ -171,25 +174,16 @@ def submit_form1():
 
 
 @app.route('/chatList', methods=['GET', 'POST'])
+@login_required
 def chatList():
-    id = request.args.get('id')
-    print(id)
-    # dbからidのデータを取得する
-    # dbは rederveTableから取得
-    chatList_db = UserChatTable.query.filter_by(User_Id1=id).first()
-    if not chatList_db:
-        flash('予約情報が存在しません', 'danger')
-        return redirect(url_for('mypage'))
-    else:
-        chatlist = {}
-        chatlist['id'] = chatList_db.id
-        chatlist['User_Id1'] = chatList_db.User_Id1
-        chatlist['User_Id2'] = chatList_db.User_Id2
-        chatlist['Room_Name'] = chatList_db.Room_Name
+    chatlist = UserChatTable.query.filter(
+        UserChatTable.User_Id == current_user.id
+    ).all()
 
     return render_template('Chatlist.html', chatlist=chatlist)
 
 @app.route('/Userchat', methods=['GET', 'POST'])
+@login_required
 def Userchat():
     return render_template('Userchat.html')
 

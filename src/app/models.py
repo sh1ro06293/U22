@@ -13,8 +13,8 @@ class UserTable(db.Model, UserMixin):
 class UserChatTable(db.Model):
     __tablename__ = 'UserChatTable'
     id = db.Column(db.Integer, primary_key=True)
-    User_Id1 = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
-    User_Id2 = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    User_Id = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
+    Station_Id = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
     Room_Name = db.Column(db.String(50), nullable=False)
 
 class UserChatMessageTable(db.Model):

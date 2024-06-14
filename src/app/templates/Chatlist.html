@@ -93,10 +93,10 @@
                     <p>利用者はいません</p>
             {% else %}
                 <ul class="user-list">
-                    {% for item in chatlist %}
+                    {% for i in chatlist %}
                         <li><a href="{{url_for('Userchat')}}">
                             <p class="user-icon"></p>
-                            <p class="user-name">{{ item }}</p>
+                            <p class="user-name">{{ i.Room_Name}}</p>
                             </a>
                         </li>
                     {% endfor %}
