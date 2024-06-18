@@ -5,7 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from os import environ
 from dotenv import load_dotenv
 load_dotenv()
-from models import UserTable, StationTable, ReserveTable
+from models import UserTable, StationTable, ReserveTable, UserChatTable, UserChatMessageTable,StationChatTable
 from ext import db
 from flask_migrate import Migrate
 from datetime import datetime
@@ -89,7 +89,10 @@ def mypage():
         ReserveTable.Departure_Datetime > current_time
     ).all()
 
-    reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
+    reservation_history_list = ReserveTable.query.filter(
+        ReserveTable.User_Id == current_user.id,
+        ReserveTable.Departure_Datetime < current_time
+        ).all()
     return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
 
 @app.route('/reserveInfo/', methods=['GET'])
@@ -132,16 +135,19 @@ def submit_form1():
         if request.method == 'POST':
             departure = request.form.get('departure')
             if not StationTable.query.filter_by(Station_Id=departure).first():
-                flash('出発駅が存在しません', 'danger')
+                print('出発駅が存在しません')
                 return redirect(url_for('route'))
             arrive = request.form.get('arrive')
             if not StationTable.query.filter_by(Station_Id=arrive).first():
-                flash('到着駅が存在しません', 'danger')
+                print('到着駅が存在しません')
                 return redirect(url_for('route'))
             day = request.form.get('day')
             delattr_time = request.form.get('time')
+            departure_Id = StationTable.query.filter_by(Station_Id=departure).first().id
+            arrive_Id = StationTable.query.filter_by(Station_Id=arrive).first().id
             # db登録
             route = ReserveTable(
+                # apiが来たら変更
                 User_Id=current_user.id,
                 Departure_Station_Id = departure,
                 Arrive_Station_Id = arrive, 
@@ -151,12 +157,39 @@ def submit_form1():
                 Arrive_Complete = False,
                 Note='test'
             )
-            db.session.add(route)
+            user_chat = UserChatTable(
+                User_Id = current_user.id,
+                Station_Id = departure_Id,
+                Room_Name = 'test'
+            )
+
+            Station_chat = StationChatTable(
+                Station_Id1 = departure_Id,
+                Station_Id2 = arrive_Id,
+                Room_Name = 'test'
+            )
+            db.session.add_all([route, user_chat, Station_chat])
             db.session.commit()
             flash('予約完了', 'success')
             return redirect(url_for('mypage'))
         
         return redirect(url_for('route'))
+
+
+@app.route('/chatList', methods=['GET', 'POST'])
+@login_required
+def chatList():
+    chatlist = UserChatTable.query.filter(
+        UserChatTable.User_Id == current_user.id
+    ).all()
+
+    return render_template('Chatlist.html', chatlist=chatlist)
+
+@app.route('/Userchat', methods=['GET', 'POST'])
+@login_required
+def Userchat():
+    return render_template('Userchat.html')
+
 
 
 @app.route('/logout')
