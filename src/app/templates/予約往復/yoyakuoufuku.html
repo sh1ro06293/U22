@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>予約フォーム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="button-group">
+            <button class="selectable" data-group="single">一回</button>
+            <button class="selectable" data-group="single">往復</button>
+            <button class="selectable">定期</button>
+        </div>
+        <div class="form-group">
+            <div class="header">行き予約日時</div>
+            <div class="field-group">
+                <label for="departure1">出発：</label>
+                <input type="text" id="departure1">
+            </div>
+            <div id="transfer-container1"></div>
+            <button type="button" id="add-transfer1">経由＋</button>
+            <div class="field-group2">
+                <label for="arrival1">到着：</label>
+                <input type="text" id="arrival1">
+            </div>
+
+            <div class="space"></div>
+
+            <div class="header">帰り予約日時</div>
+            <div class="field-group">
+                <label for="departure2">出発：</label>
+                <input type="text" id="departure2">
+            </div>
+            <div id="transfer-container2"></div>
+            <button type="button" id="add-transfer2">経由＋</button>
+            <div class="field-group2">
+                <label for="arrival2">到着：</label>
+                <input type="text" id="arrival2">
+            </div>
+            <textarea id="remarks" placeholder="備考欄"></textarea>
+        </div>
+        <button class="submit-button">予約</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
