@@ -9,6 +9,7 @@ from models import UserTable, StationTable, ReserveTable, UserChatTable, UserCha
 from ext import db
 from flask_migrate import Migrate
 from datetime import datetime
+import requests
 
 
 
@@ -237,6 +238,26 @@ def staffLogin():
 @login_required
 def staffPage():
     return render_template('staffPage.html')
+
+@app.route('/apitest')
+def apitest():
+    data = {'key': 'values'}
+    get_data = {}
+    request_url = 'https://api.odpt.org' + f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_KEY")}'
+    
+    # リクエストを送る
+    response = requests.get(request_url)
+
+    # レスポンスのステータスコードを確認
+    if response.status_code == 200:
+        # レスポンスのjsonデータを取得
+        get_data = response.json()
+    else:
+        get_data = 'error'
+    print(len(get_data))
+
+    return render_template('apitest.html', data=data, get_data=get_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
