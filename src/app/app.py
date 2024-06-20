@@ -243,23 +243,37 @@ def staffPage():
 def apitest():
     data = {'key': 'values'}
     get_data = {}
-    request_url = 'https://api.odpt.org' + f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_KEY")}'
+    
+    request_base = 'https://api.odpt.org'
+    request_endpoint = f'/api/v4/odpt:Station?odpt:operator=odpt.Operator:JR-East&acl:consumerKey={environ.get("API_TOKEN")}'
+    # request_endpoint = f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_TOKEN")}'
+    # request_endpoint = f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_TOKEN")}'
+
+    request_url = request_base + request_endpoint
     
     # リクエストを送る
     response = requests.get(request_url)
-
+    
     # レスポンスのステータスコードを確認
     if response.status_code == 200:
         # レスポンスのjsonデータを取得
-        get_data = response.json()
+        station_data = []
+        get_data = response.json() 
+        for getdata in get_data:
+            station_data.append(getdata['owl:sameAs'])
+            print(getdata['owl:sameAs'])
+
+        data = {
+            'get_data': get_data,
+            'station_data': station_data
+        }
+
     else:
         get_data = 'error'
-    print(len(get_data))
-
-    return render_template('apitest.html', data=data, get_data=get_data)
+        print(response)
+    
+    return render_template('apitest.html', data=data)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
