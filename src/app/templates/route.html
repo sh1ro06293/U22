@@ -6,26 +6,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <title>root</title>
+    <title>予約フォーム</title>
 </head>
 <body>
-    <header>
-        <div>
-        <ul>
-            <li>
-                <button id="btn1kai" class="btn btn-1">一回</button>
-            </li>
-            <li>
-                <button id="btnOfuku" class="btn btn-2" >往復</button>
-            </li>
-            <li>
-                <button id="btnTeiki" class="btn btn-3">定期</button>
-            </li>
-        </ul>
-        </div>
-    </header>
+    <div class="button-group">
+        <button class="selectable" data-group="single">一回</button>
+        <button class="selectable" data-group="single">往復</button>
+        <button class="selectable">定期</button>
+    </div>
+    
 <main>
-<div class="wrap">
+<div class="form-group">
     <form id="form1" method="post" action="/submit_form1" style="display:none;">
         <p>出発1：<input type="text" name="departure" id="departure"></p>
         <p>到着：<input type="text" name="arrive" id="arrive"></p>
