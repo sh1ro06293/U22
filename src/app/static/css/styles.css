@@ -17,6 +17,12 @@ body {
     background-color: #fff;
 }
 
+.form-group{
+    width:auto;
+    padding: auto;
+    border: #4CAF50;
+}
+
 .button-group {
     display: flex;
     justify-content: space-between;
@@ -45,6 +51,8 @@ body {
 }
 
 .form-group {
+    background-attachment: fixed;
+    background-color: #4CAF50;
     margin-bottom: 20px;
 }
 
