@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>予約フォーム</title>
-    <script src="{{ ulr_for('static',filename='css/style.css') }}"></script>
-    <script src="{{ ulr_for('static',filename='js/yoyaku.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <script src="{{ url_for('static',filename='js/yoyaku.js') }}"></script>
 </head>
 <body>
     <div class="container">
@@ -30,6 +30,5 @@
         </div>
         <button class="submit-button">予約</button>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
