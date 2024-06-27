@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="{{ url_for('static',filename='js/yoyaku.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/yoyaku.js') }}"></script>
     <title>予約フォーム</title>    
 </head>
 <body>
@@ -16,24 +16,22 @@
         <button class="selectable" data-group="single">往復</button>
         <button class="selectable">定期</button>
     </div>
-    
-<main>
-<div class="form-group">
-    <form id="form1" method="post" action="/submit_form1" style="display:none;">
+
+    <form id="form1" method="post" action="/submit_form1" >
         <p>出発1：<input type="text" name="departure" id="departure"></p>
         <p>到着：<input type="text" name="arrive" id="arrive"></p>
         <p>日付：<input type="date" name="day" id="day"></p>
         <p>時間：<input type="time" name="time" id="time"></p>
         <button type="submit" class="btn btn-1">検索</button>
     </form>
-    <form id="form2" method="post" action="/submit_form2" style="display:none;">
+    <form id="form2" method="post" action="/submit_form2" >
         <p>出発2：<input type="text" name="departure" id="departure"></p>
         <p>到着：<input type="text" name="arrive" id="arrive"></p>
         <p>日付：<input type="date" name="day" id="day"></p>
         <p>時間：<input type="time" name="time" id="time"></p>
         <button type="submit" class="btn btn-2">検索</button>
     </form>
-    <form id="form3" method="post" action="/submit_form3" style="display:none;">
+    <form id="form3" method="post" action="/submit_form3" >
         <p>出発3：<input type="text" name="departure" id="departure"></p>
         <p>到着：<input type="text" name="arrive" id="arrive"></p>
         <p>日付：<input type="date" name="day" id="day"></p>
@@ -42,6 +40,5 @@
     </form>
 
 </div>
-</main>
 </body>
 </html>
