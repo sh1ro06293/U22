@@ -96,7 +96,7 @@ def mypage():
         ).all()
     return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
 
-@app.route('/reserveInfo/', methods=['GET'])
+@app.route('/reserveInfo/', methods=['GET','POST'])
 @login_required
 def reserve_info_detail():
     id = request.args.get('id')
@@ -189,7 +189,61 @@ def chatList():
 @app.route('/Userchat', methods=['GET', 'POST'])
 @login_required
 def Userchat():
-    return render_template('Userchat.html')
+    id = request.args.get('id')
+    print(id)
+    # dbからidのデータを取得する
+    # dbは rederveTableから取得
+    User_Chat = UserChatTable.query.filter_by(id=id).first()
+    return render_template('Userchat.html',Touser=current_user.id, User_Chat=User_Chat)
+
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    messages = [] 
+    # jsからidをもらう
+    data = request.get_json()
+    id = data.get('id')
+    userchat_db = UserChatTable.query.filter_by(id=id).first()
+    fromStation = userchat_db.Station_Id
+    message = data.get('message')
+    if message:
+        userMassege = UserChatMessageTable(
+            User_Chat_Id = id,
+            To_User = current_user.id,
+            From_Station = fromStation,
+            Message = message
+        )
+        # DB格納
+        db.session.add(userMassege)
+        db.session.commit()
+
+        # jsにメッセージを送る
+        usermessage_db = UserChatMessageTable.query.filter_by(User_Chat_Id=id)
+        for i in usermessage_db:
+            messages.append(i.Message)
+        
+        return jsonify({"message": "Message received", "messages": messages})
+        
+    return jsonify({"error": "No message sent"}), 400
+
+@app.route('/get_messages', methods=['GET','post'])
+def get_messages():
+    messages = []  # メッセージを保存するリスト
+    # jsからidをもらう
+    data = request.get_json()
+    id = data.get('id')
+    # jsにメッセージを送る
+    usermessage_db = UserChatMessageTable.query.filter_by(User_Chat_Id=id)
+    for i in usermessage_db:
+        messages.append(i.Message)
+    
+    return jsonify({"message": "Message received", "messages": messages})
+    
+
+
+
+
+#     return jsonify({"messages": messages})
+
 
 
 
