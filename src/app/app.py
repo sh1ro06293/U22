@@ -293,6 +293,11 @@ def staffLogin():
 def staffPage():
     return render_template('staffPage.html')
 
+@app.route('/staffChatList', methods=['GET', 'POST'])
+@login_required
+def staffChatList():
+    return render_template('staffChatList.html')
+
 @app.route('/apitest')
 def apitest():
     data = {'key': 'values'}
