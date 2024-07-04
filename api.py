@@ -10,9 +10,10 @@ request_base = 'https://api.odpt.org'
 
 # これで駅ごとのタイムテーブル取得
 # request_endpoint = f'/api/v4/odpt:StationTimetable?owl:sameAs=odpt.StationTimetable:TamaMonorail.TamaMonorail.Manganji.Southbound.SaturdayHoliday&acl:consumerKey={environ.get("API_TOKEN")}'
-request_endpoint = f'/api/v4/odpt:StationTimetable?odpt:railway=odpt.Railway:TamaMonorail.TamaMonorail&acl:consumerKey={environ.get("API_TOKEN")}'
+# request_endpoint = f'/api/v4/odpt:StationTimetable?odpt:railway=odpt.Railway:TamaMonorail.TamaMonorail&acl:consumerKey={environ.get("API_TOKEN")}'
+# request_endpoint = f'/api/v4/odpt:Station?dc:title=五反田&acl:consumerKey={environ.get("API_TOKEN")}'
 
-# request_endpoint = f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_TOKEN")}'
+request_endpoint = f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_TOKEN")}'
 
 request_url = request_base + request_endpoint
 
