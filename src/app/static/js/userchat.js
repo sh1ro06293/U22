@@ -42,7 +42,8 @@ function updateChatBox(messages) {
     chatBox.innerHTML = '';  // チャットボックスをクリア
     messages.forEach(message => {
         const messageElement = document.createElement('div');
-        messageElement.textContent = message;
+        messageElement.classList.add("From_user_" + message[1]);
+        messageElement.textContent = message[0];
         chatBox.appendChild(messageElement);
     });
 }

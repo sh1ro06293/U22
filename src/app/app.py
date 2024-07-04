@@ -219,9 +219,9 @@ def send_message():
         # jsにメッセージを送る
         usermessage_db = UserChatMessageTable.query.filter_by(User_Chat_Id=id)
         for i in usermessage_db:
-            messages.append(i.Message)
+            messages.append([i.Message, i.From_User])
         
-        return jsonify({"message": "Message received", "messages": messages})
+        return jsonify({"message": "Message received", "messages": messages,})
         
     return jsonify({"error": "No message sent"}), 400
 
@@ -234,7 +234,7 @@ def get_messages():
     # jsにメッセージを送る
     usermessage_db = UserChatMessageTable.query.filter_by(User_Chat_Id=id)
     for i in usermessage_db:
-        messages.append(i.Message)
+        messages.append([i.Message, i.From_User])
     
     return jsonify({"message": "Message received", "messages": messages})
     
