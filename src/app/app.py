@@ -202,14 +202,13 @@ def send_message():
     # jsからidをもらう
     data = request.get_json()
     id = data.get('id')
-    userchat_db = UserChatTable.query.filter_by(id=id).first()
-    fromStation = userchat_db.Station_Id
+    FromUser = data.get('FromUser')
     message = data.get('message')
+    
     if message:
         userMassege = UserChatMessageTable(
             User_Chat_Id = id,
-            To_User = current_user.id,
-            From_Station = fromStation,
+            From_User = FromUser,
             Message = message
         )
         # DB格納
@@ -296,7 +295,20 @@ def staffPage():
 @app.route('/staffChatList', methods=['GET', 'POST'])
 @login_required
 def staffChatList():
-    return render_template('staffChatList.html')
+    chatlist = UserChatTable.query.filter(
+        UserChatTable.Station_Id == current_user.id
+    ).all()
+    return render_template('staffChatList.html', chatlist=chatlist)
+
+@app.route('/staffChat', methods=['GET', 'POST'])
+@login_required
+def staffChat():
+    id = request.args.get('id')
+    print(id)
+    # dbからidのデータを取得する
+    # dbは rederveTableから取得
+    User_Chat = UserChatTable.query.filter_by(id=id).first()
+    return render_template('staffChat.html',Touser=current_user.id, User_Chat=User_Chat)
 
 @app.route('/apitest')
 def apitest():

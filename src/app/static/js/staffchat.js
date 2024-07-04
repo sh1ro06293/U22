@@ -9,7 +9,7 @@ function sendMessage() {
 
     const messageInput = document.getElementById('message-input');
     const message = messageInput.value;
-    if (message.length == 0){
+    if (message.length == 0) {
         alert("メッセージを入力してください")
         return 0
     }
@@ -19,11 +19,10 @@ function sendMessage() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
             message: message,
-            id :id,
-            FromUser: true
-         })
+            id: id
+        })
     })
         .then(response => response.json())
         .then(data => {
@@ -62,7 +61,8 @@ function fetchMessages() {
         },
         body: JSON.stringify({
             message: message,
-            id: id
+            id: id,
+            FromUser: false
         })
     })
         .then(response => response.json())

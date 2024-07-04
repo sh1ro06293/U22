@@ -21,8 +21,7 @@ class UserChatMessageTable(db.Model):
     __tablename__ = 'UserChatMessageTable'
     id = db.Column(db.Integer, primary_key=True)
     User_Chat_Id = db.Column(db.Integer, db.ForeignKey('UserChatTable.id'), nullable=False)
-    To_User = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
-    From_Station = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    From_User = db.Column(db.Boolean, nullable=False)
     Message = db.Column(db.Text, nullable=False)
 
 class StationChatTable(db.Model):
