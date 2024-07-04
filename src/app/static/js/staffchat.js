@@ -21,7 +21,8 @@ function sendMessage() {
         },
         body: JSON.stringify({
             message: message,
-            id: id
+            id: id,
+            FromUser: false
         })
     })
         .then(response => response.json())

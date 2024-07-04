@@ -203,6 +203,7 @@ def send_message():
     data = request.get_json()
     id = data.get('id')
     FromUser = data.get('FromUser')
+    print(FromUser)
     message = data.get('message')
     
     if message:

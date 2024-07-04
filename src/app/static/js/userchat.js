@@ -62,7 +62,8 @@ function fetchMessages() {
         },
         body: JSON.stringify({
             message: message,
-            id: id
+            id: id,
+            FromUser: true
         })
     })
         .then(response => response.json())
