@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>予約フォーム</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}">
+    <script src="{{ url_for('static',filename='js/yoyaku.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="button-group">
+            <button class="selectable" data-group="single">一回</button>
+            <button class="selectable" data-group="single">往復</button>
+            <button class="selectable">定期</button>
+        </div>
+        <div class="form-group">
+            <div class="header">予約日時</div>
+            <div class="field-group">
+                <label for="departure">出発：</label>
+                <input type="text" id="departure">
+            </div>
+            <div id="transfer-container"></div>
+            <button type="button" id="add-transfer">経由＋</button>
+            <div class="field-group2">
+                <label for="arrival">到着：</label>
+                <input type="text" id="arrival">
+            </div>
+            <textarea id="remarks" placeholder="備考欄"></textarea>
+        </div>
+        <button class="submit-button">予約</button>
+    </div>
+</body>
+</html>

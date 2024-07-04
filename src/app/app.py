@@ -5,10 +5,11 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from os import environ
 from dotenv import load_dotenv
 load_dotenv()
-from models import UserTable, StationTable, ReserveTable
+from models import UserTable, StationTable, ReserveTable, UserChatTable, UserChatMessageTable,StationChatTable
 from ext import db
 from flask_migrate import Migrate
 from datetime import datetime
+import requests
 
 
 
@@ -89,10 +90,13 @@ def mypage():
         ReserveTable.Departure_Datetime > current_time
     ).all()
 
-    reservation_history_list = ReserveTable.query.filter_by(User_Id=current_user.id).all()
+    reservation_history_list = ReserveTable.query.filter(
+        ReserveTable.User_Id == current_user.id,
+        ReserveTable.Departure_Datetime < current_time
+        ).all()
     return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
 
-@app.route('/reserveInfo/', methods=['GET'])
+@app.route('/reserveInfo/', methods=['GET','POST'])
 @login_required
 def reserve_info_detail():
     id = request.args.get('id')
@@ -132,16 +136,19 @@ def submit_form1():
         if request.method == 'POST':
             departure = request.form.get('departure')
             if not StationTable.query.filter_by(Station_Id=departure).first():
-                flash('出発駅が存在しません', 'danger')
+                print('出発駅が存在しません')
                 return redirect(url_for('route'))
             arrive = request.form.get('arrive')
             if not StationTable.query.filter_by(Station_Id=arrive).first():
-                flash('到着駅が存在しません', 'danger')
+                print('到着駅が存在しません')
                 return redirect(url_for('route'))
             day = request.form.get('day')
             delattr_time = request.form.get('time')
+            departure_Id = StationTable.query.filter_by(Station_Id=departure).first().id
+            arrive_Id = StationTable.query.filter_by(Station_Id=arrive).first().id
             # db登録
             route = ReserveTable(
+                # apiが来たら変更
                 User_Id=current_user.id,
                 Departure_Station_Id = departure,
                 Arrive_Station_Id = arrive, 
@@ -151,12 +158,93 @@ def submit_form1():
                 Arrive_Complete = False,
                 Note='test'
             )
-            db.session.add(route)
+            user_chat = UserChatTable(
+                User_Id = current_user.id,
+                Station_Id = departure_Id,
+                Room_Name = 'test'
+            )
+
+            Station_chat = StationChatTable(
+                Station_Id1 = departure_Id,
+                Station_Id2 = arrive_Id,
+                Room_Name = 'test'
+            )
+            db.session.add_all([route, user_chat, Station_chat])
             db.session.commit()
             flash('予約完了', 'success')
             return redirect(url_for('mypage'))
         
         return redirect(url_for('route'))
+
+
+@app.route('/chatList', methods=['GET', 'POST'])
+@login_required
+def chatList():
+    chatlist = UserChatTable.query.filter(
+        UserChatTable.User_Id == current_user.id
+    ).all()
+
+    return render_template('Chatlist.html', chatlist=chatlist)
+
+@app.route('/Userchat', methods=['GET', 'POST'])
+@login_required
+def Userchat():
+    id = request.args.get('id')
+    print(id)
+    # dbからidのデータを取得する
+    # dbは rederveTableから取得
+    User_Chat = UserChatTable.query.filter_by(id=id).first()
+    return render_template('Userchat.html',Touser=current_user.id, User_Chat=User_Chat)
+
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    messages = [] 
+    # jsからidをもらう
+    data = request.get_json()
+    id = data.get('id')
+    userchat_db = UserChatTable.query.filter_by(id=id).first()
+    fromStation = userchat_db.Station_Id
+    message = data.get('message')
+    if message:
+        userMassege = UserChatMessageTable(
+            User_Chat_Id = id,
+            To_User = current_user.id,
+            From_Station = fromStation,
+            Message = message
+        )
+        # DB格納
+        db.session.add(userMassege)
+        db.session.commit()
+
+        # jsにメッセージを送る
+        usermessage_db = UserChatMessageTable.query.filter_by(User_Chat_Id=id)
+        for i in usermessage_db:
+            messages.append(i.Message)
+        
+        return jsonify({"message": "Message received", "messages": messages})
+        
+    return jsonify({"error": "No message sent"}), 400
+
+@app.route('/get_messages', methods=['GET','post'])
+def get_messages():
+    messages = []  # メッセージを保存するリスト
+    # jsからidをもらう
+    data = request.get_json()
+    id = data.get('id')
+    # jsにメッセージを送る
+    usermessage_db = UserChatMessageTable.query.filter_by(User_Chat_Id=id)
+    for i in usermessage_db:
+        messages.append(i.Message)
+    
+    return jsonify({"message": "Message received", "messages": messages})
+    
+
+
+
+
+#     return jsonify({"messages": messages})
+
+
 
 
 @app.route('/logout')
@@ -205,7 +293,41 @@ def staffLogin():
 def staffPage():
     return render_template('staffPage.html')
 
+@app.route('/apitest')
+def apitest():
+    data = {'key': 'values'}
+    get_data = {}
+    
+    request_base = 'https://api.odpt.org'
+    request_endpoint = f'/api/v4/odpt:Station?odpt:operator=odpt.Operator:JR-East&acl:consumerKey={environ.get("API_TOKEN")}'
+    # request_endpoint = f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_TOKEN")}'
+    # request_endpoint = f'/api/v4/odpt:StationTimetable?acl:consumerKey={environ.get("API_TOKEN")}'
+
+    request_url = request_base + request_endpoint
+    
+    # リクエストを送る
+    response = requests.get(request_url)
+    
+    # レスポンスのステータスコードを確認
+    if response.status_code == 200:
+        # レスポンスのjsonデータを取得
+        station_data = []
+        get_data = response.json() 
+        for getdata in get_data:
+            station_data.append(getdata['owl:sameAs'])
+            print(getdata['owl:sameAs'])
+
+        data = {
+            'get_data': get_data,
+            'station_data': station_data
+        }
+
+    else:
+        get_data = 'error'
+        print(response)
+    
+    return render_template('apitest.html', data=data)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-

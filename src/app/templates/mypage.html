@@ -49,6 +49,9 @@
           {% endif %}
    <div class="history">
         <h2>予約履歴</h2>
+     {% if reservation_history_list == [] %}
+     <p>予約はありません</p>
+     {% else %}
         <table>
           <tr>
                <th>予約日・時間</th>
@@ -71,6 +74,10 @@
           </tr>
           {% endfor %}
         </table>
+          {% endif %}
+   </div>
+   <div class="chatList">
+     <h2><a href="{{ url_for('chatList') }}">chatリスト</a></h2>
    </div>
 </body>
 </html>

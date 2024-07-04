@@ -6,8 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>インデックスです</h1>
-    <button><a href="{{ url_for('login') }}">ログインページ</a></button>
-    <button><a href="{{ url_for('staffRegister') }}">駅登録</a></button>
+    <h1>API</h1>
+    {{ data.key }}
+    <h2>get_data</h2>
+    {{ data.get_data }}
+    <h2>station_data</h2>
+    {{ data.station_data }}
 </body>
 </html>
