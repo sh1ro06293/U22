@@ -1,0 +1,27 @@
+@charset "UTF-8";
+body{
+    text-align: center;
+}
+.mailwrap{
+    padding-top: 5%;
+}
+.passwrap{
+    padding-top: 5%;
+}
+.logwrap{
+    padding-top: 5%;
+}
+.crewrap{
+    padding-top: 5%;
+}
+.logwrap button{
+    background-color: lawngreen;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.crewrap button{
+    background-color: skyblue;
+    text-decoration: none;
+    border-radius: 12px;
+}

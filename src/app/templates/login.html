@@ -2,21 +2,26 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}"> -->
+    <link rel="stylesheet" href="../static/css/login.css">
     <title>Login</title>
 </head>
 <body>
-    <h2>Login</h2>
     <form method="POST">
-        <div>
+        <div class="mailwrap">
             <label for="email">メールアドレス:</label>
             <input type="email" id="email" name="email" required>
         </div>
-        <div>
+        <div class="passwrap">
             <label for="password">パスワード:</label>
             <input type="password" id="password" name="password" required>
         </div>
+        <div class="logwrap">
         <button type="submit">ログイン</button>
+    </div>
     </form>
+    <div class="crewrap">
     <button><a href="{{ url_for('register') }}">アカウント作成</a></button>
+</div>
 </body>
 </html>
