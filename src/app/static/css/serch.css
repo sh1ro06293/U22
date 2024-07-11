@@ -1,0 +1,18 @@
+@charset "UTF-8";
+body{
+    text-align: center;
+}
+/* .station{
+    display: flex;
+} */
+.root{
+    padding-right: 20px;
+}
+.rootwrap{
+    display: flex;
+    justify-content: center;
+    border: 2px solid #2aa10c;
+    border-radius: 12px;
+    width: 80%;
+    margin: 0 auto;
+}
