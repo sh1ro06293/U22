@@ -21,8 +21,7 @@ class UserChatMessageTable(db.Model):
     __tablename__ = 'UserChatMessageTable'
     id = db.Column(db.Integer, primary_key=True)
     User_Chat_Id = db.Column(db.Integer, db.ForeignKey('UserChatTable.id'), nullable=False)
-    To_User = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
-    From_Station = db.Column(db.Integer, db.ForeignKey('StationTable.id'), nullable=False)
+    From_User = db.Column(db.Boolean, nullable=False)
     Message = db.Column(db.Text, nullable=False)
 
 class StationChatTable(db.Model):
@@ -63,3 +62,10 @@ class ReserveTable(db.Model):
     Arrive_Complete = db.Column(db.Boolean, default=False)
     Transfer_Id = db.Column(db.Integer)
     Note = db.Column(db.Text)
+
+class StationTimetable(db.Model):
+    __tablename__ = 'StationTimetable'
+    id = db.Column(db.Integer, primary_key=True)
+    Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
+    Departure_Datetime = db.Column(db.DateTime, nullable=False)
+    Arrive_Datetime = db.Column(db.DateTime, nullable=False)
