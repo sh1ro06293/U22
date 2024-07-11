@@ -68,4 +68,3 @@ class StationTimetable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
     Departure_Datetime = db.Column(db.DateTime, nullable=False)
-    Arrive_Datetime = db.Column(db.DateTime, nullable=False)
