@@ -53,8 +53,8 @@ class ReserveTable(db.Model):
     __tablename__ = 'ReserveTable'
     id = db.Column(db.Integer, primary_key=True)
     User_Id = db.Column(db.Integer, db.ForeignKey('UserTable.id'), nullable=False)
-    Departure_Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
-    Arrive_Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
+    Departure_Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.id'), nullable=False)
+    Arrive_Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.id'), nullable=False)
     Departure_Datetime = db.Column(db.DateTime, nullable=False)
     Arrive_Datetime = db.Column(db.DateTime, nullable=False)
     Car_Number = db.Column(db.String(10))
@@ -66,5 +66,14 @@ class ReserveTable(db.Model):
 class StationTimetable(db.Model):
     __tablename__ = 'StationTimetable'
     id = db.Column(db.Integer, primary_key=True)
-    Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
+    Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.id'), nullable=False)
+    Train_Id = db.Column(db.Integer, db.ForeignKey('TrainTable.id'), nullable=False)
     Departure_Datetime = db.Column(db.DateTime, nullable=False)
+    final = db.Column(db.Boolean, default=False)
+
+class TrainTable(db.Model):
+    __tablename__ = 'TrainTable'
+    id = db.Column(db.Integer, primary_key=True)
+    direction = db.Column(db.String(20), nullable=False)
+    weekday = db.Column(db.String(20), nullable=False)
+    line = db.Column(db.String(20), nullable=False)
