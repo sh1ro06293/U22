@@ -62,3 +62,10 @@ class ReserveTable(db.Model):
     Arrive_Complete = db.Column(db.Boolean, default=False)
     Transfer_Id = db.Column(db.Integer)
     Note = db.Column(db.Text)
+
+class StationTimetable(db.Model):
+    __tablename__ = 'StationTimetable'
+    id = db.Column(db.Integer, primary_key=True)
+    Station_Id = db.Column(db.String(10), db.ForeignKey('StationTable.Station_Id'), nullable=False)
+    Departure_Datetime = db.Column(db.DateTime, nullable=False)
+    Arrive_Datetime = db.Column(db.DateTime, nullable=False)
