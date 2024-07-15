@@ -89,7 +89,7 @@ def mypage():
         ReserveTable.User_Id == current_user.id,
         ReserveTable.Departure_Datetime > current_time
     ).all()
-
+    
     reservation_history_list = ReserveTable.query.filter(
         ReserveTable.User_Id == current_user.id,
         ReserveTable.Departure_Datetime < current_time
@@ -144,14 +144,17 @@ def submit_form1():
                 return redirect(url_for('route'))
             day = request.form.get('day')
             delattr_time = request.form.get('time')
-            departure_Id = StationTable.query.filter_by(Station_Id=departure).first().id
-            arrive_Id = StationTable.query.filter_by(Station_Id=arrive).first().id
+            departure_station_data = StationTable.query.filter_by(Station_Id=departure).first()
+            departure_Id = departure_station_data.id
+            arrive_station_data = StationTable.query.filter_by(Station_Id=arrive).first()
+            arrive_Id = arrive_station_data.id
+            departure_statoin_name = departure_station_data.Name
             # db登録
             route = ReserveTable(
                 # apiが来たら変更
                 User_Id=current_user.id,
-                Departure_Station_Id = departure,
-                Arrive_Station_Id = arrive, 
+                Departure_Station_Id = departure_Id,
+                Arrive_Station_Id = arrive_Id, 
                 Departure_Datetime = day + ' ' + delattr_time,
                 Arrive_Datetime = day + ' ' + delattr_time,
                 Departure_Complete = False,
@@ -161,7 +164,7 @@ def submit_form1():
             user_chat = UserChatTable(
                 User_Id = current_user.id,
                 Station_Id = departure_Id,
-                Room_Name = 'test'
+                Room_Name = departure_statoin_name
             )
 
             Station_chat = StationChatTable(
