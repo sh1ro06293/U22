@@ -3,26 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/staffRegister.css">
     <title>Register</title>
 </head>
 
 <body>
-    <h2>駅登録</h2>
-    <form method="POST">
-        <div>
-            <label for="name">駅名:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="id">駅ID:</label>
-            <input type="text" id="station_id" name="station_id" required>
-        </div>
-        <div>
-            <label for="password">パスワード:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">新規作成</button>
-    </form>
+    <div class="container">
+        <h2>駅登録</h2>
+        <form method="POST">
+            <div>
+                <label for="name">駅名:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="id">駅ID:</label>
+                <input type="text" id="station_id" name="station_id" required>
+            </div>
+            <div>
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">新規作成</button>
+        </form>
+    </div>
 </body>
 
 </html>
