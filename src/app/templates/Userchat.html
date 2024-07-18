@@ -5,20 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャットインターフェース</title>
-    
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userchat.css') }}">
 </head>
 
-
 <body>
-    <h1>Chat App</h1>
-    <div id="chat-box" style="border:1px solid #000; height:300px; overflow-y:scroll;"></div>
-    <input type="text" id="message-input" placeholder="Enter your message">
-    <button id="send-button">Send</button>
+    <h1>{{ User_Chat.Room_Name }}</h1>
+    <div id="chat-box"></div>
+    <input type="text" id="message-input" placeholder="メッセージを入力">
+    <button id="send-button">送信</button>
     
     <script src="{{ url_for('static', filename='js/userchat.js') }}"></script>
 </body>
-
-
 
 </html>

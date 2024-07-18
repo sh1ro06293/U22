@@ -1,0 +1,14 @@
+name: U22 auto deploy
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Deploy
+       run: |
+         echo "${{ secrets.PRIVATE_KEY }}" > tokuzawa
+         chmod 600 tokuzawa
+         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i tokuzawa "cd ~/prj/ClimbCraft && git fetch github:Sunwood-ai-labs/ClimbCraft.git && git pull github:Sunwood-ai-labs/ClimbCraft.git"

@@ -10,10 +10,10 @@ document.querySelectorAll('.selectable').forEach(button => {
     });
 });
 
-document.getElementById('add-transfer').addEventListener('click', function() {
+const btn__ = document.getElementById('add-transfer')
+let transferCount = 0;
+btn__.addEventListener('click', function () {
     const transferContainer = document.getElementById('transfer-container');
-    const transferCount = transferContainer.children.length;
-
     if (transferCount < 2) {
         const newTransferDiv = document.createElement('div');
         newTransferDiv.classList.add('field-group');
@@ -29,18 +29,22 @@ document.getElementById('add-transfer').addEventListener('click', function() {
         const removeButton = document.createElement('button');
         removeButton.textContent = '×';
         removeButton.classList.add('remove-transfer');
-        removeButton.addEventListener('click', function() {
-            transferContainer.removeChild(newTransferDiv);
-            document.getElementById('add-transfer').style.display = 'block';
+        removeButton.addEventListener('click', () => {
+            transferContainer.removeChild(transferContainer.lastChild);
+            if (btn__.style.display == 'none') {
+                btn__.style.display = 'block';
+            }
+            transferCount--;
         });
 
         newTransferDiv.appendChild(newTransferLabel);
         newTransferDiv.appendChild(newTransferInput);
         newTransferDiv.appendChild(removeButton);
-        transferContainer.appendChild(newTransferDiv);
+        transferContainer.append(newTransferDiv);
     }
 
     if (transferCount + 1 >= 2) {
         this.style.display = 'none';
     }
+    transferCount++;
 });

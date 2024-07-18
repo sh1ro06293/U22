@@ -5,79 +5,74 @@
     <title>mypage</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ url_for('static', filename='js/mypage.js') }}"></script>
+    <link rel="stylesheet" href="../static/css/mypage.css">
 </head>
 <body>
-    <a href="{{ url_for('logout') }}">ログアウト</a>
-    <h2>{{ current_user.Name }}</h2>
-    <div class="reserv">
-          <h2><a href="{{ url_for('route') }}">予約</a></h2>
-
-    </div>
-   <div class="reservation_list">
-          <h2>予約一覧</h2>
-          {% if reservation_list == [] %}
-               <p>予約はありません</p>
-          {% else %}
-               <div class="reservation">
+    <div class="container">
+        <div class="header">
+            <a href="{{ url_for('logout') }}">ログアウト</a>
+            <h2>{{ current_user.Name }}</h2>
+        </div>
+        <div class="reserv">
+            <h2 class="under"><a href="{{ url_for('route') }}">予約する</a></h2>
+        </div>
+        <div class="reservation_list">
+            <h2 class="under">予約一覧</h2>
+            {% if reservation_list == [] %}
+                <p>予約はありません</p>
+            {% else %}
+                <div class="reservation">
                     <table>
-                         <tr>
-                              <th>予約日・時間</th>
-                              <th>乗車駅</th>
-                              <th>降車駅</th>
-                              <th>編集・削除</th>
-                         </tr>
-                         {% for i in reservation_list %}
-                         <tr>
-                              <th>
-                                   {{ i.Arrive_Datetime }}
-                              </th>
-                              <th>
-                                   {{ i.Departure_Station_Id }}
-                              </th>
-                              <th>
-                                   
-                                   {{ i.Arrive_Station_Id }}
-                              </th>
-                              <th>
-                                   <button data-id="{{i.id}}" class="reserveBtn" >編集・削除</button>
-                              </th>
-                         </tr>
-                         {% endfor %}
+                        <thead>
+                            <tr>
+                                <th>予約日時</th>
+                                <th>乗車駅</th>
+                                <th>降車駅</th>
+                                <th>編集・削除</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in reservation_list %}
+                            <tr>
+                                <td>{{ i.Arrive_Datetime }}</td>
+                                <td>{{ i.Departure_Station_Id }}</td>
+                                <td>{{ i.Arrive_Station_Id }}</td>
+                                <td><button data-id="{{i.id}}" class="reserveBtn">編集・削除</button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
-</div> <!-- reservation -->
-</div> <!-- reservation_list -->
-          {% endif %}
-   <div class="history">
-        <h2>予約履歴</h2>
-     {% if reservation_history_list == [] %}
-     <p>予約はありません</p>
-     {% else %}
-        <table>
-          <tr>
-               <th>予約日・時間</th>
-               <th>乗車駅</th>
-               <th>降車駅</th>
-               <th>編集・削除</th>
-          </tr>
-          {% for i in reservation_history_list %}
-          <tr>
-               <th>
-                    {{ i.Arrive_Datetime }}
-               </th>
-               <th>
-                    {{ i.Departure_Station_Id }}
-                    
-               </th>
-               <th>
-                    {{ i.Arrive_Station_Id }}
-               </th>
-          </tr>
-          {% endfor %}
-        </table>
-          {% endif %}
-   </div>
-   <div class="chatList">
-     <h2><a href="{{ url_for('chatList') }}">chatリスト</a></h2>
-   </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="history">
+            <h2 class="under">予約履歴</h2>
+            {% if reservation_history_list == [] %}
+                <p>予約はありません</p>
+            {% else %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>予約日時</th>
+                            <th>乗車駅</th>
+                            <th>降車駅</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in reservation_history_list %}
+                        <tr>
+                            <td>{{ i.Arrive_Datetime }}</td>
+                            <td>{{ i.Departure_Station_Id }}</td>
+                            <td>{{ i.Arrive_Station_Id }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+        <div class="chatList">
+            <h2><a href="{{ url_for('chatList') }}">チャットリストを見る</a></h2>
+        </div>
+    </div>
 </body>
 </html>

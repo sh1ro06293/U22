@@ -5,56 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャットインターフェース</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/staffchat.css') }}">
 
-        .chat-container {
-            width: auto;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 10px;
-            display: inline-block;
-        }
-
-        .left {
-            background-color: #e0e0e0;
-            text-align: left;
-            float: left;
-            clear: both;
-        }
-
-        .right {
-            background-color: #007bff;
-            color: white;
-            text-align: right;
-            float: right;
-            clear: both;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="chat-container">
-        <div class="message left">メッセージ 1</div>
-        <div class="message right">メッセージ 2</div>
-        <div class="message left">メッセージ 3</div>
-        <div class="message right">メッセージ 4</div>
-        <div class="message left">メッセージ 5</div>
-    </div>
+    <h1>Chat App</h1>
+    <div id="chat-box" style="border:1px solid #000; height:300px; overflow-y:scroll;"></div>
+    <input type="text" id="message-input" placeholder="Enter your message">
+    <button id="send-button">Send</button>
+
+    <script src="{{ url_for('static', filename='js/staffchat.js') }}"></script>
 </body>
 
 </html>
