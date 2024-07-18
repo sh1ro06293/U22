@@ -78,7 +78,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('mypage'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html')
+    return render_template('Userlogin.html')
 
 @app.route('/mypage', methods=['GET', 'POST'])
 @login_required
@@ -94,7 +94,7 @@ def mypage():
         ReserveTable.User_Id == current_user.id,
         ReserveTable.Departure_Datetime < current_time
         ).all()
-    return render_template('mypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
+    return render_template('Usermypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
 
 @app.route('/reserveInfo/', methods=['GET','POST'])
 @login_required
@@ -129,7 +129,7 @@ def reserve_info_detail():
 @app.route('/route', methods=['GET', 'POST'])
 @login_required
 def route():
-    return render_template('route.html')
+    return render_template('Userroute.html')
 
 @app.route('/submit_form1', methods=['POST'])
 def submit_form1():
@@ -266,7 +266,7 @@ def staffRegister():
         station = StationTable(Name=name, Station_Id=station_id ,Password=hashed_password)
         if station.query.filter_by(Station_Id=station_id).first():
             flash('すでに登録済み', 'danger')
-            return redirect(url_for('staffRegister'))
+            return redirect(url_for('StaffRegister'))
         db.session.add(station)
         db.session.commit()
         flash('作成完了', 'success')
