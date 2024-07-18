@@ -124,7 +124,7 @@ def reserve_info_detail():
         reserve_data['transferId'] = reserve_db.Transfer_Id
         reserve_data['note'] = reserve_db.Note
     
-    return render_template('reserveInfo.html', reserveData=reserve_data)
+    return render_template('UserreserveInfo.html', reserveData=reserve_data)
 
 @app.route('/route', methods=['GET', 'POST'])
 @login_required
@@ -187,7 +187,7 @@ def chatList():
         UserChatTable.User_Id == current_user.id
     ).all()
 
-    return render_template('Chatlist.html', chatlist=chatlist)
+    return render_template('UserChatlist.html', chatlist=chatlist)
 
 @app.route('/Userchat', methods=['GET', 'POST'])
 @login_required
@@ -271,7 +271,7 @@ def staffRegister():
         db.session.commit()
         flash('作成完了', 'success')
 
-    return render_template('staffRegister.html')
+    return render_template('StaffRegister.html')
 
 @app.route('/staffLogin', methods=['GET', 'POST'])
 def staffLogin():
@@ -289,12 +289,12 @@ def staffLogin():
             return redirect(url_for('staffPage'))
         else:
             flash('ログイン失敗しました', 'danger')
-    return render_template('staffLogin.html')
+    return render_template('StaffLogin.html')
 
 @app.route('/staffPage')
 @login_required
 def staffPage():
-    return render_template('staffPage.html')
+    return render_template('StaffPage.html')
 
 @app.route('/staffChatList', methods=['GET', 'POST'])
 @login_required
@@ -302,7 +302,7 @@ def staffChatList():
     chatlist = UserChatTable.query.filter(
         UserChatTable.Station_Id == current_user.id
     ).all()
-    return render_template('staffChatList.html', chatlist=chatlist)
+    return render_template('StaffChatList.html', chatlist=chatlist)
 
 @app.route('/staffChat', methods=['GET', 'POST'])
 @login_required
@@ -312,7 +312,7 @@ def staffChat():
     # dbからidのデータを取得する
     # dbは rederveTableから取得
     User_Chat = UserChatTable.query.filter_by(id=id).first()
-    return render_template('staffChat.html',Touser=current_user.id, User_Chat=User_Chat)
+    return render_template('StaffChat.html',Touser=current_user.id, User_Chat=User_Chat)
 
 @app.route('/apitest')
 def apitest():
