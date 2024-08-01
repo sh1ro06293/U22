@@ -62,7 +62,7 @@ def register():
         next_page = request.args.get('next')
         return redirect(next_page) if next_page else redirect(url_for('mypage'))
 
-    return render_template('register.html')
+    return render_template('Userregister.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
