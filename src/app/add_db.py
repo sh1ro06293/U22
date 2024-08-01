@@ -1,4 +1,6 @@
 from os import environ
+from dotenv import load_dotenv
+load_dotenv()
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -12,6 +14,7 @@ import csv
 DB_USER = environ.get('DB_USER')
 DB_PASS = environ.get('DB_PASS')
 DB_NAME = environ.get('DB_NAME')
+print(DB_USER, DB_PASS, DB_NAME)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
