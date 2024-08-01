@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 from ext import db
 from models import StationTimetable, TrainTable, StationTable
 import csv
-
+from flask_bcrypt import Bcrypt
 
 
 
@@ -22,6 +22,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{DB_USER}:{DB_P
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 migrate = Migrate(app, db) 
+bcrypt = Bcrypt(app)
 
 # csvの内容をmodelsを参考にdbに追加
 def add_train_db():
@@ -88,13 +89,13 @@ def add_station_db():
         reader = csv.reader(f)
         for row in reader:
             id = yamanote_ID[row[0]]
-
+            pw = bcrypt.generate_password_hash(id.lower()).decode('utf-8')
             # stationTableにデータがないなら
             if not StationTable.query.filter_by(Station_Id=id).first():
                 station_data = StationTable(
                     Station_Id=id,
                     Name=f'{row[0]}-山手線',
-                    Password=id.lower()
+                    Password=pw
                 )
                 db.session.add(station_data)
             db.session.commit()
