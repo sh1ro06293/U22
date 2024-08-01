@@ -22,7 +22,7 @@ migrate = Migrate(app, db)
 
 # csvの内容をmodelsを参考にdbに追加
 def add_train_db():
-    with open('../../station_data/yamanote_sotomawari_heijitu.csv') as f:
+    with open('../../station_data/yamanote_sotomawari_heijitu.csv', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             times = row[1:]
@@ -36,7 +36,7 @@ def add_train_db():
             db.session.commit()
             break
 
-    with open('../../station_data/yamanote_sotomawari_kyuujitu.csv') as f:
+    with open('../../station_data/yamanote_sotomawari_kyuujitu.csv', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             times = row[1:]
@@ -50,7 +50,7 @@ def add_train_db():
             db.session.commit()
             break
 
-    with open('../../station_data/yamanote_uchimawari_heijitu.csv') as f:
+    with open('../../station_data/yamanote_uchimawari_heijitu.csv', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             times = row[1:]
@@ -64,7 +64,7 @@ def add_train_db():
             db.session.commit()
             break
 
-    with open('../../station_data/yamanote_uchimawari_kyuujitu.csv') as f:
+    with open('../../station_data/yamanote_uchimawari_kyuujitu.csv', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             times = row[1:]
@@ -81,7 +81,7 @@ def add_train_db():
 def add_station_db():
     # 全ての駅をid割り振る
     yamanote_ID = {'東京':'JY01', '神田':'JY02', '秋葉原':'JY03', '御徒町':'JY04', '上野':'JY05', '鶯谷':'JY06', '日暮里':'JY07', '西日暮里':'JY08', '田端':'JY09', '駒込':'JY10', '巣鴨':'JY11', '大塚':'JY12', '池袋':'JY13', '目白':'JY14', '高田馬場':'JY15', '新大久保':'JY16', '新宿':'JY17', '代々木':'JY18', '原宿':'JY19', '渋谷':'JY20', '恵比寿':'JY21', '目黒':'JY22', '五反田':'JY23', '大崎':'JY24', '品川':'JY25', '高輪ゲートウェイ':'JY26', '田町':'JY27', '浜松町':'JY28', '新橋':'JY29', '有楽町':'JY30'}
-    with open('../../station_data/yamanote_uchimawari_kyuujitu.csv') as f:
+    with open('../../station_data/yamanote_uchimawari_kyuujitu.csv', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             id = yamanote_ID[row[0]]
