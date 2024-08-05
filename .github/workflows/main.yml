@@ -22,3 +22,4 @@ jobs:
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
             git pull origin main
+            pip install -r requirements.txt
