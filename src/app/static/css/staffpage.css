@@ -59,8 +59,9 @@ button a {
     text-decoration: none;
 }
 
-.login-btn {
-    background-color: #32cd32;
+.logout-btn {
+    background-color: #E57373;
+  
 }
 
 
