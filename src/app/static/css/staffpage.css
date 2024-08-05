@@ -11,6 +11,34 @@ body {
     height: 100vh;
     text-align: center;
 }
+header {
+    width: 100%;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a, .logout-btn a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
 
 .container {
     background-color: #fff;

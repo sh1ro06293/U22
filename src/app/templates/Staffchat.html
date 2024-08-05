@@ -10,7 +10,16 @@
 </head>
 
 <body>
-    <h1>Chat App</h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('staffChat') }}">チャット機能</a></li>
+                <li><a href="{{ url_for('staffPage') }}">マイページ</a></li>
+                <li><a href="{{ url_for('logout') }}">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>チャット</h1>
     <div id="chat-box" style="border:1px solid #000; height:300px; overflow-y:scroll;"></div>
     <input type="text" id="message-input" placeholder="Enter your message">
     <button id="send-button">Send</button>

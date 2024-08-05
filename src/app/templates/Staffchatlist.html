@@ -78,6 +78,15 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('staffChat') }}">チャット機能</a></li>
+                <li><a href="{{ url_for('staffPage') }}">マイページ</a></li>
+                <li><a href="{{ url_for('logout') }}">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <div class="header">スタッフチャット機能</div>
         <div class="list-header">利用リスト</div>
