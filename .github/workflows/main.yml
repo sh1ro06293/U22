@@ -22,4 +22,4 @@ jobs:
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
             git pull origin main
-            sudo pip3 install -r requirements.txt
+            pip3 install -r requirements.txt 
