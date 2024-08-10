@@ -23,3 +23,4 @@ jobs:
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
             git pull origin main
             pip3 install -r requirements.txt 
+            cd src/app
