@@ -83,18 +83,35 @@ def login():
 @app.route('/mypage', methods=['GET', 'POST'])
 @login_required
 def mypage():
-
+    need_info = ["id", "Departure_Datetime", "Departure_Station_Name", "Arrive_Station_Name"]
+    need_db_info = ["id", "Departure_Datetime", "Departure_Station_Id", "Arrive_Station_Id"]
+    reserve_info_list = []
+    reserve_history_info_list = []
     current_time = datetime.now()
+    # ReserveTable.Departure_Datetime < current_time
     reservation_list = ReserveTable.query.filter(
         ReserveTable.User_Id == current_user.id,
-        ReserveTable.Departure_Datetime > current_time
     ).all()
-    
-    reservation_history_list = ReserveTable.query.filter(
-        ReserveTable.User_Id == current_user.id,
-        ReserveTable.Departure_Datetime < current_time
-        ).all()
-    return render_template('Usermypage.html', reservation_list=reservation_list, reservation_history_list=reservation_history_list)
+
+    for reserve in reservation_list:
+        reserve_info = {}
+        for i in range(len(need_info)):
+            if need_info[i] == "Departure_Station_Name":
+                reserve_info[need_info[i]] = StationTable.query.filter_by(id=reserve.Departure_Station_Id).first().Name
+            elif need_info[i] == "Arrive_Station_Name":
+                reserve_info[need_info[i]] = StationTable.query.filter_by(id=reserve.Arrive_Station_Id).first().Name
+            elif need_info[i] == "Departure_Datetime":
+                    reserve_info[need_info[i]] = reserve.Departure_Datetime.strftime('%Y年%m月%d日 %H時%M分')
+            else:
+                reserve_info[need_info[i]] = getattr(reserve, need_db_info[i])
+
+        if reserve.Departure_Datetime > current_time:
+            reserve_info_list.append(reserve_info)
+        else:
+            reserve_history_info_list.append(reserve_info)
+            
+
+    return render_template('Usermypage.html', reserve_list=reserve_info_list, reserve_history_list=reserve_history_info_list)
 
 @app.route('/reserveInfo/', methods=['GET','POST'])
 @login_required

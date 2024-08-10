@@ -18,7 +18,7 @@
         </div>
         <div class="reservation_list">
             <h2 class="under">予約一覧</h2>
-            {% if reservation_list == [] %}
+            {% if reserve_list == [] %}
                 <p>予約はありません</p>
             {% else %}
                 <div class="reservation">
@@ -32,11 +32,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for i in reservation_list %}
+                            {% for i in reserve_list %}
                             <tr>
-                                <td>{{ i.Arrive_Datetime }}</td>
-                                <td>{{ i.Departure_Station_Id }}</td>
-                                <td>{{ i.Arrive_Station_Id }}</td>
+                                <td>{{ i.Departure_Datetime }}</td>
+                                <td>{{ i.Departure_Station_Name }}</td>
+                                <td>{{ i.Arrive_Station_Name }}</td>
                                 <td><button data-id="{{i.id}}" class="reserveBtn">編集・削除</button></td>
                             </tr>
                             {% endfor %}
@@ -47,7 +47,7 @@
         </div>
         <div class="history">
             <h2 class="under">予約履歴</h2>
-            {% if reservation_history_list == [] %}
+            {% if reserve_history_list == [] %}
                 <p>予約はありません</p>
             {% else %}
                 <table>
@@ -59,11 +59,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for i in reservation_history_list %}
+                        {% for i in reserve_history_list %}
                         <tr>
-                            <td>{{ i.Arrive_Datetime }}</td>
-                            <td>{{ i.Departure_Station_Id }}</td>
-                            <td>{{ i.Arrive_Station_Id }}</td>
+                            <td>{{ i.Departure_Datetime }}</td>
+                            <td>{{ i.Departure_Station_Name }}</td>
+                            <td>{{ i.Arrive_Station_Name }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
