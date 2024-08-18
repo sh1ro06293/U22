@@ -126,10 +126,14 @@ def reserve_info_detail():
         return redirect(url_for('mypage'))
 
     else:
+        departure_station_name = StationTable.query.filter_by(id=reserve_db.Departure_Station_Id).first().Name
+        arrive_station_name = StationTable.query.filter_by(id=reserve_db.Arrive_Station_Id).first().Name
         reserve_data = {}
         reserve_data['id'] = reserve_db.id
         reserve_data['departureStationId'] = reserve_db.Departure_Station_Id
         reserve_data['arriveStationId'] = reserve_db.Arrive_Station_Id
+        reserve_data['departureStationName'] = departure_station_name
+        reserve_data['arriveStationName'] = arrive_station_name
         # 日にちだけにする
         reserve_data['departureDate'] = reserve_db.Departure_Datetime.strftime('%Y-%m-%d')
         # 時間だけにする
