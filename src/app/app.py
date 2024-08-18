@@ -152,23 +152,26 @@ def route():
 def submit_form1():
         if request.method == 'POST':
             departure = request.form.get('departure')
-            if not StationTable.query.filter_by(Station_Id=departure).first():
+            arrive = request.form.get('arrive')
+            departure_station_data = StationTable.query.filter_by(Name=departure).first()
+            arrive_station_data = StationTable.query.filter_by(Name=arrive).first()
+
+            if not departure_station_data:
                 print('出発駅が存在しません')
                 return redirect(url_for('route'))
-            arrive = request.form.get('arrive')
-            if not StationTable.query.filter_by(Station_Id=arrive).first():
+
+
+            if not arrive_station_data:
                 print('到着駅が存在しません')
                 return redirect(url_for('route'))
+            
             day = request.form.get('day')
             delattr_time = request.form.get('time')
-            departure_station_data = StationTable.query.filter_by(Station_Id=departure).first()
             departure_Id = departure_station_data.id
-            arrive_station_data = StationTable.query.filter_by(Station_Id=arrive).first()
             arrive_Id = arrive_station_data.id
             departure_statoin_name = departure_station_data.Name
             # db登録
             route = ReserveTable(
-                # apiが来たら変更
                 User_Id=current_user.id,
                 Departure_Station_Id = departure_Id,
                 Arrive_Station_Id = arrive_Id, 

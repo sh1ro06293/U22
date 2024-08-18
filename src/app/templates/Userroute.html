@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.flexdatalist.min.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/jquery.flexdatalist.min.js') }}"></script>
+    
     
     <title>予約フォーム</title>
 </head>
@@ -20,16 +24,29 @@
         </div>
         
         <form id="form1" method="post" action="/submit_form1">
-            <p>出発：<input type="text" name="departure" id="departure"></p>
+            <p>出発：<input type='text'
+                class="flexdatalist"
+                class="departure"
+                data-data="{{ url_for('static', filename='json/stationData.json')}}"
+                name="departure"
+                id="departure">
+            </p>
             <div id="transfer-container"></div>
             <button type="button" id="add-transfer">経由＋</button>
-            <p>到着：<input type="text" name="arrive" id="arrive"></p>
+            <p>到着：<input type='text'
+                class="flexdatalist"
+                class="arrive"
+                data-data="{{ url_for('static', filename='json/stationData.json')}}"
+                name="arrive"
+                id="arrive">
+            </p>
             <p>日付：<input type="date" name="day" id="day"></p>
             <p>時間：<input type="time" name="time" id="time"></p>
             <button type="submit" class="btn btn-1">検索</button>
         </form>
     </div>
     <script src="{{ url_for('static', filename='js/yoyaku.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/datalist.js') }}"></script>
 </body>
 
 </html>
