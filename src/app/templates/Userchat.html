@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャットインターフェース</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/userchat.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
 </head>
 
 <body>
     <h1>{{ User_Chat.Room_Name }}</h1>
     <div id="chat-box"></div>
     <input type="text" id="message-input" placeholder="メッセージを入力">
-    <button id="send-button">送信</button>
+    <button id="send-button" onclick="sendMessage()">送信</button>
     
     <script src="{{ url_for('static', filename='js/userchat.js') }}"></script>
 </body>

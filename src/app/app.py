@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, redirect, url_for, flash, request
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_socketio import SocketIO, emit
 # envから取得
 from os import environ
 from dotenv import load_dotenv
@@ -28,6 +29,8 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
+
+socketio = SocketIO(app)
 
 
 @login_manager.user_loader
@@ -373,6 +376,11 @@ def apitest():
     
     return render_template('apitest.html', data=data)
 
+@socketio.on('message')
+def handleMessage(msg):
+    print('Message: ' + msg)
+    emit('message', msg, broadcast=True, include_self=False)
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app)
