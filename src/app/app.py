@@ -176,7 +176,7 @@ def submit_form1():
             delattr_time = request.form.get('time')
             departure_Id = departure_station_data.id
             arrive_Id = arrive_station_data.id
-            departure_statoin_name = departure_station_data.Name
+            departure_station_name = departure_station_data.Name
             # db登録
             route = ReserveTable(
                 User_Id=current_user.id,
@@ -188,18 +188,33 @@ def submit_form1():
                 Arrive_Complete = False,
                 Note='test'
             )
-            user_chat = UserChatTable(
-                User_Id = current_user.id,
-                Station_Id = departure_Id,
-                Room_Name = departure_statoin_name
-            )
+            db.session.add(route)
 
-            Station_chat = StationChatTable(
-                Station_Id1 = departure_Id,
-                Station_Id2 = arrive_Id,
-                Room_Name = 'test'
-            )
-            db.session.add_all([route, user_chat, Station_chat])
+            # ユーザーチャットと駅チャットを更新（もしそれらも必要であれば）
+            user_chat = UserChatTable.query.filter_by(User_Id=current_user.id, Station_Id=departure_Id).first()
+            if user_chat:
+                user_chat.Room_Name = departure_station_name
+            else:
+                # 必要なら新しいエントリーを作成
+                new_user_chat = UserChatTable(
+                    User_Id=current_user.id,
+                    Station_Id=departure_Id,
+                    Room_Name=departure_station_name
+                )
+                db.session.add(new_user_chat)
+
+            station_chat = StationChatTable.query.filter_by(Station_Id1=departure_Id, Station_Id2=arrive_Id).first()
+            if station_chat:
+                station_chat.Room_Name = 'test'
+            else:
+                # 必要なら新しいエントリーを作成
+                station_chat = StationChatTable(
+                    Station_Id1=departure_Id,
+                    Station_Id2=arrive_Id,
+                    Room_Name='test'
+                )
+                db.session.add(station_chat)
+                
             db.session.commit()
             flash('予約完了', 'success')
             return redirect(url_for('mypage'))
