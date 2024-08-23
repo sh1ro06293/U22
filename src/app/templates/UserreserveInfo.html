@@ -42,6 +42,7 @@
             </p>
             <p>日付：<input type="date" name="day" id="day" value="{{ reserveData.departureDate }}"></p>
             <p>時間：<input type="time" name="time" id="time" value="{{ reserveData.departureTime }}"></p>
+            <input type="hidden" name="reserveId" value="{{ reserveData.id }}">
             <button type="submit" class="btn edit">編集</button>
             <button onclick="submitRemove()" class="btn remove">削除</button>
         </form>

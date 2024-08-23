@@ -224,6 +224,72 @@ def submit_remove():
         return jsonify({'redirect_url': url_for('mypage')})
     return jsonify({'redirect_url': url_for('mypage')})
 
+@app.route('/submit_edit', methods=['POST'])
+def submit_edit():
+        if request.method == 'POST':
+            # urlからidを取得
+            reservation_id = request.form.get('reserveId')
+            departure = request.form.get('departure')
+            arrive = request.form.get('arrive')
+            departure_station_data = StationTable.query.filter_by(Name=departure).first()
+            arrive_station_data = StationTable.query.filter_by(Name=arrive).first()
+
+            if not departure_station_data:
+                print('出発駅が存在しません')
+
+            if not arrive_station_data:
+                print('到着駅が存在しません')
+            
+            day = request.form.get('day')
+            delattr_time = request.form.get('time')
+            departure_Id = departure_station_data.id
+            arrive_Id = arrive_station_data.id
+            departure_station_name = departure_station_data.Name
+
+            reservation = ReserveTable.query.get(reservation_id)
+
+            if reservation:
+                # 予約情報を更新
+                reservation.Departure_Station_Id = departure_Id
+                reservation.Arrive_Station_Id = arrive_Id
+                reservation.Departure_Datetime = day + ' ' + delattr_time
+                reservation.Arrive_Datetime = day + ' ' + delattr_time
+                # 必要に応じて他のフィールドも更新する
+                reservation.Note = 'test'  # 実際の値で置き換える
+
+                # ユーザーチャットと駅チャットを更新（もしそれらも必要であれば）
+                user_chat = UserChatTable.query.filter_by(User_Id=current_user.id, Station_Id=departure_Id).first()
+                if user_chat:
+                    user_chat.Room_Name = departure_station_name
+                else:
+                    # 必要なら新しいエントリーを作成
+                    new_user_chat = UserChatTable(
+                        User_Id=current_user.id,
+                        Station_Id=departure_Id,
+                        Room_Name=departure_station_name
+                    )
+                    db.session.add(new_user_chat)
+
+                station_chat = StationChatTable.query.filter_by(Station_Id1=departure_Id, Station_Id2=arrive_Id).first()
+                if station_chat:
+                    station_chat.Room_Name = 'test'
+                else:
+                    # 必要なら新しいエントリーを作成
+                    new_station_chat = StationChatTable(
+                        Station_Id1=departure_Id,
+                        Station_Id2=arrive_Id,
+                        Room_Name='test'
+                    )
+                    db.session.add(new_station_chat)
+
+                # データベースに変更をコミット
+                db.session.commit()
+                flash('予約が更新されました', 'success')
+            else:
+                flash('予約情報が見つかりません', 'danger')
+
+            return redirect(url_for('mypage'))
+
 
 @app.route('/chatList', methods=['GET', 'POST'])
 @login_required
