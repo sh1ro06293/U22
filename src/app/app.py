@@ -120,7 +120,7 @@ def mypage():
 @login_required
 def reserve_info_detail():
     id = request.args.get('id')
-    print(id)
+
     # dbからidのデータを取得する
     # dbは rederveTableから取得
     reserve_db = ReserveTable.query.filter_by(id=id).first()
@@ -214,7 +214,7 @@ def submit_form1():
                     Room_Name='test'
                 )
                 db.session.add(station_chat)
-                
+
             db.session.commit()
             flash('予約完了', 'success')
             return redirect(url_for('mypage'))
@@ -319,7 +319,7 @@ def chatList():
 @login_required
 def Userchat():
     id = request.args.get('id')
-    print(id)
+
     # dbからidのデータを取得する
     # dbは rederveTableから取得
     User_Chat = UserChatTable.query.filter_by(id=id).first()
@@ -332,7 +332,7 @@ def send_message():
     data = request.get_json()
     id = data.get('id')
     FromUser = data.get('FromUser')
-    print(FromUser)
+
     message = data.get('message')
     
     if message:
@@ -434,7 +434,7 @@ def staffChatList():
 @login_required
 def staffChat():
     id = request.args.get('id')
-    print(id)
+
     # dbからidのデータを取得する
     # dbは rederveTableから取得
     User_Chat = UserChatTable.query.filter_by(id=id).first()
@@ -462,7 +462,7 @@ def apitest():
         get_data = response.json() 
         for getdata in get_data:
             station_data.append(getdata['owl:sameAs'])
-            print(getdata['owl:sameAs'])
+
 
         data = {
             'get_data': get_data,
@@ -471,13 +471,12 @@ def apitest():
 
     else:
         get_data = 'error'
-        print(response)
+
     
     return render_template('apitest.html', data=data)
 
 @socketio.on('message')
 def handleMessage(msg):
-    print('Message: ' + msg)
     emit('message', msg, broadcast=True, include_self=False)
 
 
