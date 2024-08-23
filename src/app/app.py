@@ -207,6 +207,24 @@ def submit_form1():
         return redirect(url_for('route'))
 
 
+@app.route('/submit_remove', methods=['POST'])
+def submit_remove():
+    if request.method == 'POST':
+        id = request.form.get('id')
+        reserve = ReserveTable.query.filter_by(id=id).first()
+        if not reserve:
+            flash('予約情報が存在しません', 'danger')
+            return redirect(url_for('mypage'))
+        db.session.delete(reserve)
+        db.session.commit()
+        flash('予約を削除しました', 'success')
+
+
+        # リダイレクト先のURLをJSON形式で返す
+        return jsonify({'redirect_url': url_for('mypage')})
+    return jsonify({'redirect_url': url_for('mypage')})
+
+
 @app.route('/chatList', methods=['GET', 'POST'])
 @login_required
 def chatList():

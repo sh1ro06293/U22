@@ -15,13 +15,13 @@
 
 <body>
     <div class="container">
-        <div class="button-group">
+        <!-- <div class="button-group">
             <button class="selectable" data-group="single">一回</button>
             <button class="selectable" data-group="single">往復</button>
             <button class="selectable">定期</button>
-        </div>
+        </div> -->
         
-        <form id="form1" method="post" action="/submit_form1">
+        <form id="form2" method="post" action="/submit_edit">
             <p>出発：<input type='text'
                 class="flexdatalist"
                 class="departure"
@@ -42,11 +42,12 @@
             </p>
             <p>日付：<input type="date" name="day" id="day" value="{{ reserveData.departureDate }}"></p>
             <p>時間：<input type="time" name="time" id="time" value="{{ reserveData.departureTime }}"></p>
-            <button type="submit" class="btn btn-1">編集</button>
-            <button type="" class="btn remove">削除</button>
+            <button type="submit" class="btn edit">編集</button>
+            <button onclick="submitRemove()" class="btn remove">削除</button>
         </form>
     </div>
     <script src="{{ url_for('static', filename='js/yoyaku.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/reserveinfo.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/datalist.js') }}"></script>
 </body>
 
