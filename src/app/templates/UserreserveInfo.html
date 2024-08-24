@@ -15,6 +15,18 @@
 
 <body>
     <div class="container">
+        <header class="header">
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('mypage') }}">マイページ</a></li>
+                    <li><a href="{{ url_for('chatList') }}">チャット機能</a></li>
+                    <li><a href="{{ url_for('logout') }}">ログアウト</a></li>
+                    <h2>{{ current_user.Name }}</h2>
+                </ul>
+            </nav>
+        </header>
+
+
         <!-- <div class="button-group">
             <button class="selectable" data-group="single">一回</button>
             <button class="selectable" data-group="single">往復</button>

@@ -12,6 +12,16 @@
 </head>
 
 <body>
+    <header class="header">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('mypage') }}">マイページ</a></li>
+                <li><a href="{{ url_for('chatList') }}">チャット機能</a></li>
+                <li><a href="{{ url_for('logout') }}">ログアウト</a></li>
+                <h2>{{ current_user.Name }}</h2>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <div class="header"><h2>ユーザチャット機能</h2></div>
         <div class="list-header"><h3>利用リスト</h3></div>

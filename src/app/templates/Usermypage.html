@@ -9,10 +9,16 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="{{ url_for('logout') }}">ログアウト</a>
-            <h2>{{ current_user.Name }}</h2>
-        </div>
+        <header class="header">
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('mypage') }}">マイページ</a></li>
+                    <li><a href="{{ url_for('chatList') }}">チャット機能</a></li>
+                    <li><a href="{{ url_for('logout') }}">ログアウト</a></li>
+                    <h2>{{ current_user.Name }}</h2>
+                </ul>
+            </nav>
+    </header>
         <div class="reserv">
             <h2 class="under"><a href="{{ url_for('route') }}">予約する</a></h2>
         </div>
