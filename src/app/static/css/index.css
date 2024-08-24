@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+.container {
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login
+{
+    display: flex;
+    justify-content: center;
+}
+.userlogin {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.userlogin button {
+    position: center;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+.stafflogin{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.stafflogin button {
+    position: center;
+    padding: 10px 20px;
+    font-size: 16px;
+}

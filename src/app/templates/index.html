@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
     <title>Document</title>
 </head>
 <body>
-    <h1>インデックスです</h1>
-    <button><a href="{{ url_for('login') }}">ログインページ</a></button>
-    <button><a href="{{ url_for('staffRegister') }}">駅登録</a></button>
+    <div class="container">
+        <h1>バリ楽</h1>
+        <p>バリ楽は、車いすの方が電車に乗るときに駅員とやり取りができるサービスです。</p>
+        <div class="login">
+            <div class="userlogin">
+                <p>ユーザーのグインはこちらから</p>
+                <button><a href="{{ url_for('login') }}">ログインページ</a></button>
+            </div>
+            <div class="stafflogin">
+                <p>駅員のログインはこちらから</p>
+                <button><a href="{{ url_for('staffLogin') }}">駅員ログイン</a></button>
+            </div>
+                
+        </div>
+    </div>
+    </body>
 </body>
 </html>
