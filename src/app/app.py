@@ -425,9 +425,15 @@ def staffPage():
 @app.route('/staffChatList', methods=['GET', 'POST'])
 @login_required
 def staffChatList():
-    chatlist = UserChatTable.query.filter(
+    chattables = UserChatTable.query.filter(
         UserChatTable.Station_Id == current_user.id
     ).all()
+    chatlist = []
+    for chat in chattables:
+        chat_id = chat.id
+        chat_name = UserTable.query.filter_by(id=chat.User_Id).first().Name
+        chatlist.append({"id":chat_id, "Room_Name": chat_name})
+
     return render_template('StaffChatList.html', chatlist=chatlist)
 
 @app.route('/staffChat', methods=['GET', 'POST'])
