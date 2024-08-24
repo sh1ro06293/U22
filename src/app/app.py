@@ -420,7 +420,36 @@ def staffLogin():
 @app.route('/staffPage')
 @login_required
 def staffPage():
-    return render_template('StaffPage.html')
+    need_info = ["id", "reserve_User_Name", "Departure_Station_Name", "Departure_Datetime"]
+    need_db_info = ["id", "User_Id", "Departure_Station_Id", "Departure_Datetime"]
+    reserve_info_list = []
+    reserve_history_info_list = []
+    current_time = datetime.now()
+    # ReserveTable.Departure_Datetime < current_time
+    reservation_list = ReserveTable.query.filter(
+        ReserveTable.Departure_Station_Id == current_user.id,
+    ).all()
+
+    for reserve in reservation_list:
+        reserve_info = {}
+        for i in range(len(need_info)):
+            if need_info[i] == "Departure_Station_Name":
+                reserve_info[need_info[i]] = StationTable.query.filter_by(id=reserve.Departure_Station_Id).first().Name
+            elif need_info[i] == "reserve_User_Name":
+                reserve_info[need_info[i]] = UserTable.query.filter_by(id=reserve.User_Id).first().Name
+            elif need_info[i] == "Departure_Datetime":
+                    reserve_info[need_info[i]] = reserve.Departure_Datetime.strftime('%Y年%m月%d日 %H時%M分')
+            else:
+                reserve_info[need_info[i]] = getattr(reserve, need_db_info[i])
+
+        if reserve.Departure_Datetime > current_time:
+            reserve_info_list.append(reserve_info)
+        else:
+            reserve_history_info_list.append(reserve_info)
+            
+
+    return render_template('staffPage.html', reserve_list=reserve_info_list, reserve_history_list=reserve_history_info_list)
+
 
 @app.route('/staffChatList', methods=['GET', 'POST'])
 @login_required
