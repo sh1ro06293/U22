@@ -33,8 +33,7 @@
                     <thead>
                         <tr>
                             <th>予約日時</th>
-                            <th>乗車駅</th>
-                            <th>降車駅</th>
+                            <th>お客様氏名</th>
                             <th>編集・削除</th>
                         </tr>
                     </thead>
@@ -42,8 +41,7 @@
                         {% for i in reserve_list %}
                         <tr>
                             <td>{{ i.Departure_Datetime }}</td>
-                            <td>{{ i.Departure_Station_Name }}</td>
-                            <td>{{ i.Arrive_Station_Name }}</td>
+                            <td>{{ i.reserve_User_Name }}</td>
                             <td><button data-id="{{i.id}}" class="reserveBtn">編集・削除</button></td>
                         </tr>
                         {% endfor %}
@@ -61,16 +59,14 @@
                 <thead>
                     <tr>
                         <th>予約日時</th>
-                        <th>乗車駅</th>
-                        <th>降車駅</th>
+                        <th>お客様氏名</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for i in reserve_history_list %}
                     <tr>
                         <td>{{ i.Departure_Datetime }}</td>
-                        <td>{{ i.Departure_Station_Name }}</td>
-                        <td>{{ i.Arrive_Station_Name }}</td>
+                        <td>{{ i.reserve_User_Name }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
