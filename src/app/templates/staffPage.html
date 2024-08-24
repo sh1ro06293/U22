@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/staffpage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mypage.css') }}">
     <title>mypage</title>
 </head>
 
@@ -23,10 +24,59 @@
     <h2>{{ current_user.Name }} 職員ページ</h2>
 </div>
     <div class="reservation_list">
-        <h2>予約一覧</h2>
-        <table>
-        </table>
-    </div> <!-- reservation_list -->
+        <h2 class="under">予約一覧</h2>
+        {% if reserve_list == [] %}
+            <p>予約はありません</p>
+        {% else %}
+            <div class="reservation">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>予約日時</th>
+                            <th>乗車駅</th>
+                            <th>降車駅</th>
+                            <th>編集・削除</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in reserve_list %}
+                        <tr>
+                            <td>{{ i.Departure_Datetime }}</td>
+                            <td>{{ i.Departure_Station_Name }}</td>
+                            <td>{{ i.Arrive_Station_Name }}</td>
+                            <td><button data-id="{{i.id}}" class="reserveBtn">編集・削除</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+    <div class="history">
+        <h2 class="under">予約履歴</h2>
+        {% if reserve_history_list == [] %}
+            <p>予約はありません</p>
+        {% else %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>予約日時</th>
+                        <th>乗車駅</th>
+                        <th>降車駅</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in reserve_history_list %}
+                    <tr>
+                        <td>{{ i.Departure_Datetime }}</td>
+                        <td>{{ i.Departure_Station_Name }}</td>
+                        <td>{{ i.Arrive_Station_Name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
     <div class="chat">
         <a href="{{ url_for('staffChatList') }}"><button>チャットへ</button></a>
 
