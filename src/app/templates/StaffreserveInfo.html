@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.flexdatalist.min.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/jquery.flexdatalist.min.js') }}"></script>
+    
+    <title>予約フォーム</title>
+</head>
+
+<body>
+    <div class="container">
+        
+            <p>出発：<p>{{ reserveData.departureStationName }}</p>
+            </p>
+            <div id="transfer-container"></div>
+            
+            <p>到着：<p>{{ reserveData.arriveStationName }}</p>
+            </p>
+            <p>日付：<p>{{ reserveData.departureDate }}</p></p>
+            <p>時間：<p>{{ reserveData.departureTime }}</p></p>
+        <form id="form2" method="post" action="/staff_submit">
+            <input type="hidden" name="reserveId" value="{{ reserveData.id }}">
+            <p>乗車号車 <input type="number" name="car_num" value="{{ reserveData.carNumber }}"></p>
+            <!-- チェックボタン -->
+            {% if reserveData.departureComplete == True %}
+            <p>乗車チェック： 乗車完了</p> 
+            <input type="hidden" name="departure_check" value="True">
+
+            {% else %}
+            <p>乗車チェック：<input type="checkbox" name="departure_check"></p> 
+
+            {% endif %}
+
+            {% if reserveData.arriveComplete == True %}
+            <p>降車チェック： 降車完了</p>
+            <input type="hidden" name="arrive_check" value="True">
+
+            {% else %}
+             <p>降車チェック：<input type="checkbox" name="arrive_check"></p>
+
+            {% endif %}              
+
+            <button type="submit" class="btn edit">更新</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/yoyaku.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/reserveinfo.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/datalist.js') }}"></script>
+</body>
+
+</html>
