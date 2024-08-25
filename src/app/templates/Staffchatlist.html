@@ -75,13 +75,14 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ url_for('static', filename='js/staffchatlist.js') }}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/staffChatList.css')}}">
 </head>
 
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="{{ url_for('staffChat') }}">チャット機能</a></li>
+                <li><a href="{{ url_for('staffChatList') }}">チャット機能</a></li>
                 <li><a href="{{ url_for('staffPage') }}">マイページ</a></li>
                 <li><a href="{{ url_for('logout') }}">ログアウト</a></li>
             </ul>

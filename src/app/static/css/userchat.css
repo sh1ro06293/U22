@@ -15,7 +15,7 @@ body {
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
@@ -82,6 +82,12 @@ h1 {
     color: #fff;
     cursor: pointer;
     font-size: 14px;
+}
+
+header ul li:hover{
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 #send-button:hover {
