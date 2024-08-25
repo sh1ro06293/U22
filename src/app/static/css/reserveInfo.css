@@ -65,7 +65,7 @@ nav ul li a,
     transition: all 0.3s ease;
 }
 
-header ul{
+/* header ul{
     display: flex;
     justify-content: end;
     list-style: none;
@@ -83,7 +83,7 @@ header ul li{
 header ul li:hover{
   transform: scale(1.05);
   transition: all 0.3s ease;
-}
+} */
 
 .wrap{
     display: flex;
